@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service window</title>
+    <link rel="stylesheet" href="css/ServiceWindow-style.css">
+</head>
+<body>
+
+	<header>
+		<div class="header-container">
+			<div class="logo">
+				<img src="img/LOGO.png" alt="logo">
+			</div>
+			<input type="checkbox" id="menu-checkbox">
+			<nav role="navigation">
+				<label for="menu-checkbox" class="toggle-button" 
+				data-open="MENU" data-close="CLOSE" onclick></label>
+				<ul class="main-menu">
+					<li><p>username<br>
+						balance</p></li>
+					<li><a href="#">HOME</a></li>
+					<li><a href="#">MY ACCOUNT</a></li>
+					<li><a href="#">LOG IN</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+
+	<div class="service-review">
+
+		<h3 class="service-name">Service name</h3>
+
+		<table class="describition-table">
+	   		<tr><td><img src="img/LOGO.png" alt="service-image"></td><td>Describition of 1 service</td></tr>
+	   		<tr><td><img src="img/LOGO.png" alt="service-image"></td><td>Describition of 2 service</td></tr>
+	   		<tr><td><img src="img/LOGO.png" alt="service-image"></td><td>Describition of 3 service</td></tr>
+	   		<tr><td><img src="img/LOGO.png" alt="service-image"></td><td>Describition of 4 service</td></tr>
+	  	</table>
+
+	  	<h3 class="sub-options-header">Subscription options</h3>
+
+		<table class="subscription-table">
+	   		<tr><th>Possible periods of subscribition in months</th><th>Price</th></tr>
+	   		<tr><td>number</td><td>price</td><td><a href="#">Subscribition button</a></td></tr>
+	   		<tr><td>number</td><td>price</td><td><a href="#">Subscribition button</a></td></tr>
+	   		<tr><td>number</td><td>price</td><td><a href="#">Subscribition button</a></td></tr>
+	   		<tr><td>number</td><td>price</td><td><a href="#">Subscribition button</a></td></tr>
+	  	</table>	  	
+	</div>
+
+    <script src="js/jquery-3.3.1.js"></script>
+</body>
+</html>

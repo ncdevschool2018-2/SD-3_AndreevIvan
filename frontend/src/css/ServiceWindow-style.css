@@ -49,12 +49,26 @@ nav{
 }
 table{
 	width: 100%;
-	background: olive;
-	color: white;
+	background: white;
+	color: black;
 	border-spacing: 1px;
 }
+h3{
+	padding-left: 50%;
+	padding-top: 5%;
+	margin-bottom: 2%;
+}
 .describition-table{
-	width: 100%;
+	margin-left: 100px;
+	width: 85%;
+	background: olive;
+	color: white;
+	border-spacing: 1px;	
+}
+.subscription-table{
+	margin-left: 100px;
+	margin-bottom: 100px;
+	width: 85%;
 	background: olive;
 	color: white;
 	border-spacing: 1px;	
