@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Administration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>	
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span> 
+				</button>
+				<a class="navbar-brand" href="#">MAXIMUS-CS</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">My profile</a></li>
+					<li><a href="#">My services</a></li>
+					<li><a href="#">Service catalogue</a></li> 
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="container">
+		<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddServiceModel">
+			Add service
+		</button>
+	</div>
+
+	<p></p>
+	<div class="container">
+		<label for="email">User login: </label>
+		<input type="text" class="form-control" id="UserLoginInput">
+	</div>
+
+	<p></p>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>User1</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>User2</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>User3</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="container">
+					<h4>Login: <span class="label label-info">Petya</span></h4><br>
+					<h4>Email: <span class="label label-info">petya@gmail.com</span></h4><br>
+					<h4>Tokens: <span class="label label-info">122</span>
+						<button type="submit" class="btn btn-warning btn-sm" data-toggle="modal" 
+						data-target="#AddTokens">Add tokens to user
+					</button>
+				</h4>
+				<p></p>
+				<button class="btn btn-danger btn-sm">Ban this user</button>
+
+			</div>
+		</div>
+		<div class="col-sm-8">
+			<div class="table-responsive">
+
+				<table id="ServiceVariantsTable" class="table table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Period</th>
+							<th scope="col">Price/period</th>
+							<th scope="col">Status</th>
+							<div class="invisible">
+								<th scope="col"></th>
+							</div>
+							<div class="invisible">
+								<th scope="col"></th>
+							</div>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Name X</td>
+							<td>Period X</td>
+							<td>Price X</td>
+							<td>
+								<h4>
+									<span class="label label-success">
+										Active
+									</span>
+								</h4>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+									Ban service
+								</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+									Unban service
+								</button>
+							</td>
+						</tr>
+
+						<tr>
+							<td>Name X</td>
+							<td>Period X</td>
+							<td>Price X</td>
+							<td>
+								<h4>
+									<span class="label label-success">
+										Active
+									</span>
+								</h4>
+							</td>
+							<td>
+								<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+									Ban service
+								</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+									Unban service
+								</button>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="AcceptServiceBanModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Are you sure about this ban?</h4>
+			</div>
+			<div class="modal-body">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div id="AddServiceModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Are you sure?</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="pwd">Name:</label>
+					<input type="password" class="form-control" id="pwd">
+					<label for="comment">Discribition:</label>
+					<textarea class="form-control" rows="5" id="comment"></textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div id="AcceptServiceUnbanModel" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Are you sure about this unban?</h4>
+			</div>
+			<div class="modal-body">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
