@@ -1,0 +1,78 @@
+<table>
+  <tr
+    class="user"
+    *ngFor="let user of users; let i = index"
+  >
+    <td class="name">{{user.name}}</td>
+    <td class="name">
+
+
+      <div
+        class="btn-group"
+        dropdown
+      >
+        <button
+          class="btn btn-primary dropdown-toggle"
+          dropdownToggle
+        >Actions</button>
+
+        <div
+          class="dropdown-menu"
+          *dropdownMenu
+        >
+          <button
+            class="dropdown-item"
+            (click)="editUser(i)"
+          >Edit</button>
+
+          <button
+            class="dropdown-item"
+            (click)="deleteUser(i)"
+          >Delete</button>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<br><br><br>
+
+<button
+  class="btn btn-primary"
+  (click)="showModal(template)"
+>Add User</button>
+
+<ng-template #addTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      (change)="addUserName = $event.target.value"
+    >
+
+    <button
+      class="btn btn-primary"
+      (click)="addUser()"
+    >Add User</button>
+  </div>
+</ng-template>
+
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      [value]="currentEditUser.name"
+      (change)="currentEditUser.name = $event.target.value"
+    >
+  </div>
+</ng-template>
