@@ -1,0 +1,97 @@
+<div class="container table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Discribition</th>
+      <th scope="col">Status</th>
+      <div class="invisible">
+        <th scope="col"></th>
+      </div>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="services"
+        *ngFor="let service of services; let i = index">
+      <th scope="row" class="id">{{service.id}}</th>
+      <td>{{service.name}}</td>
+      <td>{{service.discribition}}</td>
+      <td>
+        <h4>
+          {{service.status}}
+        </h4>
+      </td>
+      <td *ngIf="getStatus(service) == notOwnedStatus">
+        <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal()">
+          Receive
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #acceptVariantsToFollowTemplate>
+
+
+
+<br><br><br><br><br><br><br><br><br>
+      <!-- Modal content-->
+
+        <div class="modal-header">
+          <button type="button" class="close" (click)="modalRef.hide()"></button>
+          <h4 class="modal-title">Subscribition variants</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="table-responsive">
+
+            <table id="ServiceVariantsTable" class="table table-bordered">
+              <thead class="thead-dark">
+              <tr>
+                <th scope="col">Period</th>
+                <th scope="col">Price/period</th>
+                <div class="invisible">
+                  <th scope="col"></th>
+                </div>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>Period X</td>
+                <td>Price X</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm" (click)="showAcceptFollowModal()">
+                    Subscribe
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+
+</ng-template>
+
+<ng-template #acceptFollowTemplate>
+
+
+      <br><br><br><br><br><br><br><br><br>
+      <!-- Modal content-->
+
+        <div class="modal-header">
+          <button type="button" class="close" (click)="modalRef.hide()"></button>
+          <h4 class="modal-title">Are you sure?</h4>
+        </div>
+        <div class="modal-body">
+          <button type="button" class="btn btn-primary"(click)="acceptFollowing()">Yes</button>
+          <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
+        </div>
+        <div class="modal-footer">
+        </div>
+
+</ng-template>

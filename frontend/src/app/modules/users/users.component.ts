@@ -9,8 +9,9 @@ import {template} from '@angular/core/src/render3';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  @ViewChild('addTemplate') addTemplate;
-  @ViewChild('editTemplate') editTemplate
+  @ViewChild('addUserTemplate') addUserTemplate;
+  @ViewChild('editNameTemplate') editNameTemplate;
+  @ViewChild('editTokensTemplate') editTokensTemplate;
 
   modalRef: BsModalRef;
 
@@ -18,7 +19,7 @@ export class UsersComponent {
 
   public addUserName: string;
 
-  public currentEditUser: any
+  public currentEditUser: any;
 
   constructor(private http: HttpService, private modalService: BsModalService) {
     http.getUsers()
@@ -47,10 +48,25 @@ export class UsersComponent {
   editUser(userIndex: number) {
     this.currentEditUser = this.users[userIndex];
 
-    this.modalRef = this.modalService.show(this.editTemplate);
+    this.modalRef = this.modalService.show(this.editNameTemplate);
   }
 
   showModal() {
-    this.modalRef = this.modalService.show(this.addTemplate);
+    this.modalRef = this.modalService.show(this.addUserTemplate);
   }
+  editUserTokens(userIndex: number) {
+    this.currentEditUser = this.users[userIndex];
+
+    this.modalRef = this.modalService.show(this.editTokensTemplate);
+  }
+  /*searchUserByLogin() {
+    this.http.get('https://api.myjson.com/bins/1gb9tf')
+      .subscribe((res: Response) => {
+        this.result = res.json();
+        this.displayItems = this.result['results'];
+      }, error => {
+        console.log(error);
+        this.errorFromSubscribe = error;
+      });
+  }*/
 }

@@ -1,9 +1,215 @@
+<div class="container">
+  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#AddServiceModel">
+    Add service
+  </button>
+</div>
+
+<p></p>
+<div class="container">
+  <label >User login: </label>
+  <input type="text" class="form-control" id="UserLoginInput">
+</div>
+
+<p></p>
+<div class="container">
+  <button class="btn btn-primary btn-sm">Search</button>
+</div>
+<p></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>User1</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>User2</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>User3</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="container">
+        <h4>Login: <span class="label label-info">Petya</span></h4><br>
+        <h4>Email: <span class="label label-info">petya@gmail.com</span></h4><br>
+        <h4>Tokens: <span class="label label-info">122</span></h4><br>
+          <h4>Status: <span class="label label-danger">banned</span></h4>
+          <p></p>
+          <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
+                  data-target="#AddTokens">Add tokens to user
+          </button>
+          <button class="btn btn-danger btn-sm">Ban this user</button>
+          <button class="btn btn-primary btn-sm">Unban this user</button>
+
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="table-responsive">
+
+        <table id="ServiceVariantsTable" class="table table-bordered">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Period</th>
+            <th scope="col">Price/period</th>
+            <th scope="col">Status</th>
+            <div class="invisible">
+              <th scope="col"></th>
+            </div>
+            <div class="invisible">
+              <th scope="col"></th>
+            </div>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Name X</td>
+            <td>Period X</td>
+            <td>Price X</td>
+            <td>
+              <h4>
+									<span class="label label-success">
+										Active
+									</span>
+              </h4>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+                Ban service
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+                Unban service
+              </button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Name X</td>
+            <td>Period X</td>
+            <td>Price X</td>
+            <td>
+              <h4>
+									<span class="label label-success">
+										Active
+									</span>
+              </h4>
+            </td>
+            <td>
+              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+                Ban service
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+                Unban service
+              </button>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br>
+
+
+<div id="AcceptServiceBanModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure about this ban?</h4>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="AddServiceModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Please, fill info</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="pwd">Name:</label>
+          <input type="password" class="form-control" id="pwd">
+          <label for="comment">Discribition:</label>
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="AcceptServiceUnbanModel" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure about this unban?</h4>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--
+<h1>USERS MODULE</h1>
+
 <table>
   <tr
     class="user"
     *ngFor="let user of users; let i = index"
   >
     <td class="name">{{user.name}}</td>
+    <td class="email">{{user.email}}</td>
+    <td class="tokens">{{user.tokens}}</td>
     <td class="name">
 
 
@@ -23,12 +229,18 @@
           <button
             class="dropdown-item"
             (click)="editUser(i)"
-          >Edit</button>
+          >EditName</button>
 
           <button
             class="dropdown-item"
             (click)="deleteUser(i)"
           >Delete</button>
+
+          <button
+            class="dropdown-item"
+            (click)="editUserTokens(i)"
+          >Edit Tokens</button>
+
         </div>
       </div>
     </td>
@@ -42,7 +254,7 @@
   (click)="showModal(template)"
 >Add User</button>
 
-<ng-template #addTemplate>
+<ng-template #addUserTemplate>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -62,7 +274,7 @@
 </ng-template>
 
 
-<ng-template #editTemplate>
+<ng-template #editNameTemplate>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -76,3 +288,19 @@
     >
   </div>
 </ng-template>
+
+<ng-template #editTokensTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Please, set tokens number</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      [value]="currentEditUser.tokens"
+      (change)="currentEditUser.tokens = $event.target.value"
+    >
+  </div>
+</ng-template>
+-->

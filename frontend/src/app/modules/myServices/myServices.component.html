@@ -1,0 +1,53 @@
+<div class="container table-responsive">
+
+  <table id="ServiceVariantsTable" class="table table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Logo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Period</th>
+      <th scope="col">Price/period</th>
+      <th scope="col">Status</th>
+      <div class="invisible">
+        <th scope="col"></th>
+      </div>
+    </tr>
+    </thead>
+    <tbody>
+    <tr
+      class="myService"
+      *ngFor="let service of myServices; let i = index"
+    >
+      <td class="logo">{{service.image}}</td>
+      <td class="name">{{service.name}}</td>
+      <td class="period">{{service.period}}</td>
+      <td class="priceForPeriod">{{service.priceForPeriod}}</td>
+      <td class="status">{{service.status}}</td>
+      <td class="unfollowButton">
+        <button type="button" class="btn btn-danger btn-sm" (click)="showAcceptUnfollowModal(template); setIndToDelete(i)">
+          Unfollow
+        </button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #acceptUnfollowTemplate>
+
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Are you sure?</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"
+            (click)="deleteServiceFromMyServices(indexToDelete); modalRef.hide()">Yes</button>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">No</button>
+  </div>
+</ng-template>
+
+

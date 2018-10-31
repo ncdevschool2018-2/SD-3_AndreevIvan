@@ -1,0 +1,6 @@
+[
+  {"id": "1", "image": "Logo", "name": "YandexMusic", "period": "12", "priceForPeriod": "156", "status": "active"},
+  {"id": "2", "image": "Logo", "name": "YandexMusic", "period": "6", "priceForPeriod": "80", "status": "banned"},
+  {"id": "3", "image": "Logo", "name": "Kinopoisk", "period": "3", "priceForPeriod": "50", "status": "active"},
+  {"id": "4", "image": "Logo", "name": "YandexMusic", "period": "6", "priceForPeriod": "80", "status": "banned"}
+]

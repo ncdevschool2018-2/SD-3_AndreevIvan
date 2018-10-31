@@ -1,0 +1,25 @@
+<div class="container">
+  <h4>Login: <span class="label label-info">{{profile[0].name}}</span></h4><br>
+  <hr class="my-5">
+  <h4>Email: <span class="label label-info">{{profile[0].email}}</span></h4><br>
+  <hr class="my-5">
+  <h4>Tokens: <span class="label label-info">{{profile[0].tokens}}</span>
+    <button type="submit" class="btn btn-warning btn-sm" (click)="showEditTokensModal()">Add tokens</button>
+  </h4>
+</div>
+
+<ng-template #editTokensTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Please, set tokens number</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      [value]="profile[0].tokens"
+      (change)="profile[0].tokens = $event.target.value"
+    >
+    <button type="submit" class="btn btn-primary btn-sm" (click)="modalRef.hide()">Submit</button>
+  </div>
+</ng-template>

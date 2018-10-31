@@ -1,4 +1,5 @@
 [
-  {"id": "1", "name": "Eduard"},
-  {"id": "1", "name": "Aleksandr"}
+  {"id": "1", "name": "Eduard", "email": "eduard@gmail.com", "tokens": "156"},
+  {"id": "2", "name": "Aleksandr", "email": "aleks@gmail.com", "tokens": "12"},
+  {"id": "3", "name": "Petya", "email": "petya@gmail.com", "tokens": "865"}
 ]
