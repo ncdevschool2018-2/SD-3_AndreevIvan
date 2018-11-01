@@ -1,9 +1,9 @@
 <div class="container">
-  <h4>Login: <span class="label label-info">{{profile[0].name}}</span></h4><br>
+  <h4>Login: <span class="label label-info">{{profile?.name}}</span></h4><br>
   <hr class="my-5">
-  <h4>Email: <span class="label label-info">{{profile[0].email}}</span></h4><br>
+  <h4>Email: <span class="label label-info">{{profile?.email}}</span></h4><br>
   <hr class="my-5">
-  <h4>Tokens: <span class="label label-info">{{profile[0].tokens}}</span>
+  <h4>Tokens: <span class="label label-info">{{profile?.tokens}}</span>
     <button type="submit" class="btn btn-warning btn-sm" (click)="showEditTokensModal()">Add tokens</button>
   </h4>
 </div>
@@ -17,8 +17,8 @@
   </div>
   <div class="modal-body">
     <input
-      [value]="profile[0].tokens"
-      (change)="profile[0].tokens = $event.target.value"
+      [value]="profile.tokens"
+      (change)="profile.tokens = $event.target.value"
     >
     <button type="submit" class="btn btn-primary btn-sm" (click)="modalRef.hide()">Submit</button>
   </div>

@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
-import {template} from '@angular/core/src/render3';
+
 
 @Component({
   selector: 'users',
@@ -13,8 +13,7 @@ export class UsersComponent {
   @ViewChild('editNameTemplate') editNameTemplate;
   @ViewChild('editTokensTemplate') editTokensTemplate;
 
-  modalRef: BsModalRef;
-
+  isVisibleUsers = false;
   public users: any[];
 
   public addUserName: string;
@@ -24,9 +23,15 @@ export class UsersComponent {
   constructor(private http: HttpService, private modalService: BsModalService) {
     http.getUsers()
       .subscribe(users => this.users = users);
+    console.log(this.users);
   }
-
-  deleteUser(userIndex: number) {
+  onBlur() {
+    this.isVisibleUsers = false;
+  }
+  onFocus() {
+    this.isVisibleUsers = true;
+  }
+  /*deleteUser(userIndex: number) {
     const user = this.users[userIndex];
 
     this.http.deleteUser(user.id)
@@ -59,7 +64,7 @@ export class UsersComponent {
 
     this.modalRef = this.modalService.show(this.editTokensTemplate);
   }
-  /*searchUserByLogin() {
+  searchUserByLogin() {
     this.http.get('https://api.myjson.com/bins/1gb9tf')
       .subscribe((res: Response) => {
         this.result = res.json();

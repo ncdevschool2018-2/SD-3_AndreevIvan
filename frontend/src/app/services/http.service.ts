@@ -9,6 +9,15 @@ export class HttpService {
 
   }
 
+  getSubVariants(): Observable<any> {
+    return this.http.get('assets/subscribitionVariants.json')
+      .pipe(
+        catchError(error => {
+          alert('error');
+          return Observable.throw(error);
+        })
+      );
+  }
   getServices(): Observable<any> {
     return this.http.get('assets/servicesCatalogue.json')
       .pipe(

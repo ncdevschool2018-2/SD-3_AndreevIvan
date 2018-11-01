@@ -21,6 +21,7 @@ import {MyProfileComponent} from './modules/myProfile/myProfile.component';
 import {MyProfileModule} from './modules/myProfile/myProfile.module';
 import {ServiceCatalogueComponent} from './modules/serviceCatalogue/serviceCatalogue.component';
 import {ServiceCatalogueModule} from './modules/serviceCatalogue/serviceCatalogue.module';
+import { FilterPipe } from './filter.pipe';
 
 
 
@@ -35,7 +36,8 @@ const pathes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilterPipe
   ],
   imports: [
     ServiceCatalogueModule,

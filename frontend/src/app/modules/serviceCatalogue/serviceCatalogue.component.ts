@@ -8,7 +8,7 @@ import {HttpService} from '../../services/http.service';
   styleUrls: ['./serviceCatalogue.component.css']
 })
 export class ServiceCatalogueComponent {
-  @ViewChild('acceptVariantsToFollowTemplate') acceptVariantsToFollowTemplate;
+  @ViewChild('variantsToFollowTemplate') variantsToFollowTemplate;
   @ViewChild('acceptFollowTemplate') acceptFollowTemplate;
 
 
@@ -16,6 +16,7 @@ export class ServiceCatalogueComponent {
 
   public services: any[];
   indexToFollow: number;
+  subVariants: any[];
 
   public currentEditUser: any;
   notOwnedStatus = "notOwned";
@@ -34,7 +35,10 @@ export class ServiceCatalogueComponent {
   }
 
   showVariantsToFollowModal() {
-    this.modalRef = this.modalService.show(this.acceptVariantsToFollowTemplate);
+    /*получение вариантов конкретной подписки из базы*/
+    this.http.getSubVariants()
+      .subscribe(subVariants => this.subVariants = subVariants);
+    this.modalRef = this.modalService.show(this.variantsToFollowTemplate);
   }
   showAcceptFollowModal() {
     this.modalRef = this.modalService.show(this.acceptFollowTemplate);
