@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+import {Profile} from './profile';
 
 
 @Component({
@@ -14,22 +15,23 @@ export class UsersComponent {
   @ViewChild('editTokensTemplate') editTokensTemplate;
 
   isVisibleUsers = false;
-  public users: any[];
+  public users: Profile[];
 
   public addUserName: string;
 
   public currentEditUser: any;
 
   constructor(private http: HttpService, private modalService: BsModalService) {
-    http.getUsers()
-      .subscribe(users => this.users = users);
-    console.log(this.users);
   }
   onBlur() {
     this.isVisibleUsers = false;
   }
   onFocus() {
-    this.isVisibleUsers = true;
+    this.http.getBillingAccounts().subscribe(accounts => {
+      // Parse json response into local array
+      this.users = accounts as Profile[];
+      this.isVisibleUsers = true;
+    });
   }
   /*deleteUser(userIndex: number) {
     const user = this.users[userIndex];

@@ -2,11 +2,19 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {Profile} from 'src/app/modules/users/profile';
 
-@Injectable()
+
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpService {
   constructor(private http: HttpClient) {
 
+  }
+
+  getBillingAccounts(): Observable<Profile[]> {
+    return this.http.get<Profile[]>('/api/ba');
   }
 
   getSubVariants(): Observable<any> {
@@ -46,7 +54,7 @@ export class HttpService {
         })
       );
   }
-  getUsers(): Observable<any> {
+  /*getUsers(): Observable<any> {
     return this.http.get('assets/users.json')
       .pipe(
         catchError(error => {
@@ -54,7 +62,7 @@ export class HttpService {
           return Observable.throw(error);
         })
       );
-  }
+  }*/
 
   deleteServiceFromMyServices(id: string): Observable<any> {
     return this.http.get('assets/myServices.json', {params: {id}})
