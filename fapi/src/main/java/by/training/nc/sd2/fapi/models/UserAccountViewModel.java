@@ -9,9 +9,6 @@ public class UserAccountViewModel {
     private String email;
     private int tokens;
 
-    public UserAccountViewModel() {
-    }
-
     public UserAccountViewModel(int id, String name, String email, int tokens) {
         this.id = id;
         this.name = name;

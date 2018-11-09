@@ -1,5 +1,6 @@
 <div class="container">
-  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
+  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel"
+          (click)="test()">
     Add service
   </button>
 </div>
@@ -7,129 +8,146 @@
 
 <p></p>
 <div class="container">
-  <label >User login: </label>
+
   <input type="search" class="form-control"
          id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search text"
-         (blur)="onBlur()" (focus)="onFocus()">
-  <ng-container *ngIf="isVisibleUsers == true" >
-    <ul *ngFor="let user of users | filter: searchText">
-      <li>{{user.name}}</li>
-    </ul>
-  </ng-container>
-</div>
-
+         (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
+  <ul *ngIf="isVisibleUsers == true">
+    <li class="list-group-item" *ngFor="let user of users | filter: searchText; let i = index"
+        (mousedown)="showUserManageModal(i)">
+      {{user.name}}
+    </li>
+  </ul>
 
 <!--
-<p></p>
-<div class="container">
-  <label >User login: </label>
-  <input type="search" class="form-control"
-         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search text">
+<div class="md-form">
+  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
 </div>
-
-
-<p></p>
-<div class="container">
-  <button class="btn btn-primary btn-sm">Search</button>
-</div>
-<p></p>
-
-
-<p></p>
-<div class="container">
-  <ul *ngFor="let user of users | filter: searchText">
-    <li>{{user.name}}</li>
-  </ul>
-</div>
+<ul *ngFor="let user of users | filter: searchText">
+  <li>{{user.name}}</li>
+</ul>
 -->
+  <!--<mat-form-field>
+    <input title="User login:" type="text" [matAutocomplete]="auto">
+  </mat-form-field>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="container">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+    <ng-container *ngIf="!isLoading">
+      <mat-option *ngFor="let user of users" [value]="user.name">
+        <span>{{ user.name }}</span>
+      </mat-option>
+    </ng-container>
+  </mat-autocomplete>-->
+
+  <!--<input type="search" class="form-control"
+         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search text"
+         (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
+  *ngIf="isVisibleUsers == true" >
+    <ul *ngIf="isVisibleUsers == true">
+      <li class="list-group-item" *ngFor="let user of users | filter: searchText; let i = index"
+          (click)="test()" (blur)="$event.stopPropagation(); $event.returnValue = false">
+        <button
+          (click)="test()"
+        >{{user.name}}</button>
+        <a href="https://www.google.com/" (click)="test()">{{user.name}}</a>
+      </li>
+    </ul>-->
+    <!--[ngClass]="{active: isUserListItemActive()}"
+          (blur)="onBlurUserListItem()" (focus)="onFocusUserListItem()"-->
+</div>
+
+<ng-template #userManageTemplate>
+  <p></p><br><p></p><p></p><p><p>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">User manage</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
         <h4>Login: <span class="label label-info">Petya</span></h4><br>
         <h4>Email: <span class="label label-info">petya@gmail.com</span></h4><br>
         <h4>Tokens: <span class="label label-info">122</span></h4><br>
-          <h4>Status: <span class="label label-danger">banned</span></h4>
-          <p></p>
+        <h4>Status: <span class="label label-danger">banned</span></h4>
           <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
                   data-target="#AddTokens">Add tokens to user
           </button>
           <button class="btn btn-danger btn-sm">Ban this user</button>
           <button class="btn btn-primary btn-sm">Unban this user</button>
-
-      </div>
     </div>
-    <div class="col-sm-8">
-      <div class="table-responsive">
+    <p></p><br>
+    <p></p><p></p><p><p><p><p>
+    <div class="table-responsive">
 
-        <table id="ServiceVariantsTable" class="table table-bordered">
-          <thead class="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Period</th>
-            <th scope="col">Price/period</th>
-            <th scope="col">Status</th>
-            <div class="invisible">
-              <th scope="col"></th>
-            </div>
-            <div class="invisible">
-              <th scope="col"></th>
-            </div>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td>Name X</td>
-            <td>Period X</td>
-            <td>Price X</td>
-            <td>
-              <h4>
-                Active
-              </h4>
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
-                Ban service
-              </button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
-                Unban service
-              </button>
-            </td>
-          </tr>
+      <table id="ServiceVariantsTable" class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Period</th>
+          <th scope="col">Price/period</th>
+          <th scope="col">Status</th>
+          <div class="invisible">
+            <th scope="col"></th>
+          </div>
+          <div class="invisible">
+            <th scope="col"></th>
+          </div>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Name X</td>
+          <td>Period X</td>
+          <td>price</td>
+          <td>
+            <h4>
+									<span class="label label-success">
+										Active
+									</span>
+            </h4>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+              Ban service
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+              Unban service
+            </button>
+          </td>
+        </tr>
 
-          <tr>
-            <td>Name X</td>
-            <td>Period X</td>
-            <td>Price X</td>
-            <td>
-              <h4>
-                Active
-              </h4>
-            </td>
-            <td>
-              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
-                Ban service
-              </button>
-            </td>
-            <td>
-              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
-                Unban service
-              </button>
-            </td>
-          </tr>
+        <tr>
+          <td>Name X</td>
+          <td>Period X</td>
+          <td>Price X</td>
+          <td>
+            <h4>
+									<span class="label label-success">
+										Active
+									</span>
+            </h4>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+              Ban service
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+              Unban service
+            </button>
+          </td>
+        </tr>
 
-          </tbody>
-        </table>
-      </div>
+        </tbody>
+      </table>
     </div>
   </div>
-</div>
-
-<br><br><br><br><br><br><br><br>
-
+</ng-template>
 
 <div id="AcceptServiceBanModel" class="modal fade" role="dialog">
   <div class="modal-dialog">

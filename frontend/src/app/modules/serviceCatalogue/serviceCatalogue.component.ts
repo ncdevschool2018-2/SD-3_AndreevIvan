@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {HttpService} from '../../services/http.service';
+import {Service} from './service';
 
 @Component({
   selector: 'serviceCatalogue',
@@ -14,12 +15,12 @@ export class ServiceCatalogueComponent {
 
   modalRef: BsModalRef;
 
-  public services: any[];
+  public services: Service[];
   indexToFollow: number;
   subVariants: any[];
 
   public currentEditUser: any;
-  notOwnedStatus = "notOwned";
+  notOwnedStatus = 'notOwned';
 
   constructor(private http: HttpService, private modalService: BsModalService) {
     http.getServices()

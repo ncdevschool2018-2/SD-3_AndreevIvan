@@ -10,7 +10,7 @@ import by.training.nc.sd2.fapi.models.UserAccountViewModel;
 import by.training.nc.sd2.fapi.service.UserAccountDataService;
 
 @RestController
-@RequestMapping("/api/ba")
+@RequestMapping("/api/user")
 public class UserAccountDataController {
 
     @Autowired

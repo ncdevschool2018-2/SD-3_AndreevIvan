@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Profile} from 'src/app/modules/users/profile';
+import {Service} from '../modules/serviceCatalogue/service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class HttpService {
   }
 
   getBillingAccounts(): Observable<Profile[]> {
-    return this.http.get<Profile[]>('/api/ba');
+    return this.http.get<Profile[]>('/api/user');
   }
 
   getSubVariants(): Observable<any> {
@@ -26,14 +27,8 @@ export class HttpService {
         })
       );
   }
-  getServices(): Observable<any> {
-    return this.http.get('assets/servicesCatalogue.json')
-      .pipe(
-        catchError(error => {
-          alert('error');
-          return Observable.throw(error);
-        })
-      );
+  getServices(): Observable<Service[]> {
+    return this.http.get<Service[]>('/api/services');
   }
   getUserInfo(): Observable<any> {
     return this.http.get('assets/myProfile.json')

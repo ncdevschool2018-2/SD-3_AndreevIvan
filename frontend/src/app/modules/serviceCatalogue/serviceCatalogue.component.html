@@ -2,7 +2,6 @@
   <table class="table">
     <thead class="thead-dark">
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Discribition</th>
       <th scope="col">Status</th>
@@ -14,9 +13,8 @@
     <tbody>
     <tr class="services"
         *ngFor="let service of services; let i = index">
-      <th scope="row" class="id">{{service.id}}</th>
       <td>{{service.name}}</td>
-      <td>{{service.discribition}}</td>
+      <td>{{service.description}}</td>
       <td>
         <h4>
           {{service.status}}
@@ -35,7 +33,7 @@
 
 <ng-template #variantsToFollowTemplate>
 
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br>
       <!-- Modal content-->
         <div class="modal-header">
           <button type="button" class="close" (click)="modalRef.hide()"></button>
