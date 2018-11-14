@@ -26,8 +26,6 @@ export class ServiceCatalogueComponent {
     http.getServices()
       .subscribe(services => this.services = services);
   }
-
-
   getStatus(myServices: any) {
     return myServices.status;
   }

@@ -27,6 +27,11 @@ export class HttpService {
         })
       );
   }
+  createService(newService: Service): Observable<Service> {
+    console.log('26');
+    console.log(newService);
+    return this.http.post<Service>('/api/services', newService);
+  }
   getServices(): Observable<Service[]> {
     return this.http.get<Service[]>('/api/services');
   }

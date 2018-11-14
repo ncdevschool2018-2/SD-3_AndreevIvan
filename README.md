@@ -5,7 +5,7 @@ Before start working check that following tools are present on your environment:
 - Maven https://maven.apache.org/download.cgi
 - Git https://git-scm.com/downloads or https://git-for-windows.github.io/
 
-1. Clone the repository:
+1. Clone the reprository:
  >git clone https://github.com/ncdevschool2018-2/{YOUR_REPOSITORY_NAME}.git
 
  For example: {YOUR_REPOSITORY_NAME} - SD-1_IvanIvanov
@@ -27,12 +27,12 @@ To avoid name collision use your initial prefix for instance the prefix for Ivan
 4. To add you module for version tracking use the command:
   >git add YourPrefix-Module-Name
 
-  Don't forget that only source code should be put into repository versioning
+  Don't forget that only source code should be put into reprository versioning
 
-5. To commit your changes in local repository use:
+5. To commit your changes in local reprository use:
   >git commit -m "initial Commit of YourPrefix-Module-Name"
 
-6. To share your changes to remote repository:
+6. To share your changes to remote reprository:
   >git push origin master
 
 
@@ -43,7 +43,7 @@ Set up database.
 
 Helper
 
-1. To install a JAR in the local repository use the following command:
+1. To install a JAR in the local reprository use the following command:
   mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
        -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
 

@@ -1,30 +1,31 @@
 package by.training.nc.sd2.fapi.service.impl;
 
-import by.training.nc.sd2.fapi.models.ServicesViewModel;
-import by.training.nc.sd2.fapi.service.ServicesDataService;
+import by.training.nc.sd2.fapi.models.ServiceViewModel;
+import by.training.nc.sd2.fapi.service.ServiceDataService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
-public class ServicesDataServiceImpl implements ServicesDataService {
+public class ServiceDataServiceImpl implements ServiceDataService {
     @Value("http://localhost:8080/")
     private String backendServerUrl;
 
     @Override
-    public List<ServicesViewModel> getAll() {
-        List<ServicesViewModel> servicesList = new ArrayList<>();
-        ServicesViewModel user1 = new ServicesViewModel (1, "Yandex Music",
+    public List<ServiceViewModel> getAll() {
+        /*List<ServiceViewModel> servicesList = new ArrayList<>();
+        ServiceViewModel user1 = new ServiceViewModel (1, "Yandex Music",
                 "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "active");
-        ServicesViewModel user2 = new ServicesViewModel (2, "Aleksandr", "Другая статистика\n" +
+        ServiceViewModel user2 = new ServiceViewModel (2, "Aleksandr", "Другая статистика\n" +
                 "Другую статистическую информацию и графики можно посмотреть в отчетах о прослушивании\n" +
                 "\n" +
                 "\n" +
@@ -47,55 +48,55 @@ public class ServicesDataServiceImpl implements ServicesDataService {
                 "Стильный значок подписчика\n" +
                 "Черный значок подписчика на твоем фото в профиле свидетельствует о том, что ты поддерживаешь Last.fm",
                 "banned");
-        ServicesViewModel user3 = new ServicesViewModel (3, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user3 = new ServiceViewModel (3, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user4 = new ServicesViewModel (4, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user4 = new ServiceViewModel (4, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user5 = new ServicesViewModel (5, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user5 = new ServiceViewModel (5, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user6 = new ServicesViewModel (6, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user6 = new ServiceViewModel (6, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user7 = new ServicesViewModel (7, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user7 = new ServiceViewModel (7, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user8 = new ServicesViewModel (8, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user8 = new ServiceViewModel (8, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user9 = new ServicesViewModel (9, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user9 = new ServiceViewModel (9, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user10 = new ServicesViewModel (10, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user10 = new ServiceViewModel (10, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
                 "в офлайн-режиме; использовать платные функции Яндекс.Радио: " +
                 "пропускать любое количество треков и слушать радио без рекламы.", "notOwned");
-        ServicesViewModel user11 = new ServicesViewModel (11, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
+        ServiceViewModel user11 = new ServiceViewModel (11, "Yandex Music", "Подписка позволяет: слушать любые треки из каталога Яндекс" +
                 ".Музыки в высоком качестве; отключить рекламу; " +
                 "пользоваться приложением и веб-версией сервиса в " +
                 "любой стране мира; скачивать треки для прослушивания " +
@@ -114,12 +115,17 @@ public class ServicesDataServiceImpl implements ServicesDataService {
         servicesList.add(user10);
         servicesList.add(user11);
 
-        return servicesList;
+        return servicesList;*/
 
-        /*RestTemplate restTemplate = new RestTemplate();
-        UserAccountViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/billing-accounts/", UserAccountViewModel[].class);
-        return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);*/
+        RestTemplate restTemplate = new RestTemplate();
+        ServiceViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/services-backend/", ServiceViewModel[].class);
+        return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);
     }
-
+    @Override
+    public ServiceViewModel createService(ServiceViewModel service) {
+        RestTemplate restTemplate = new RestTemplate();
+        System.out.println(service.getName());
+        return restTemplate.postForEntity(backendServerUrl + "/api/services-backend/", service, ServiceViewModel.class).getBody();
+    }
 
 }
