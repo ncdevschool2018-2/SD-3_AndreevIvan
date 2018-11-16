@@ -22,7 +22,7 @@ For example by.training.nc.sd1
 Also please read Java Package Naming:
 http://www.oracle.com/technetwork/java/codeconventions-135099.html
 
-To avoid name collision use your initial prefix for instance the prefix for Ivan Petrov is IP
+To avoid login collision use your initial prefix for instance the prefix for Ivan Petrov is IP
 
 4. To add you module for version tracking use the command:
   >git add YourPrefix-Module-Name

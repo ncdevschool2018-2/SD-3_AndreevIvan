@@ -5,7 +5,7 @@
   <artifactId>be</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>be</name>
+  <login>be</login>
   <url>http://maven.apache.org</url>
 
   <parent>

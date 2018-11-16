@@ -5,6 +5,6 @@ import by.training.nc.sd2.entity.Service;
 import java.util.Optional;
 
 public interface ServiceService {
-    Service createService(Service account);
+    Service createService(Service service);
     Iterable<Service> getAllServices();
 }

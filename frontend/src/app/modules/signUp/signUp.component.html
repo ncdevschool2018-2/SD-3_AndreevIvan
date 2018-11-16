@@ -1,17 +1,15 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class="container">
-  <form>
-    <div class="form-group">
-      <label for="login">Login:</label>
-      <input type="text" class="form-control" id="login">
-    </div>
-    <div class="form-group">
-      <label for="email">Email address:</label>
-      <input type="email" class="form-control" id="email">
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd">
-    </div>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-  </form>
+  <div class="form-group">
+    <label for="loginInput">Login:</label>
+    <input type="text" class="form-control" id="loginInput" [(ngModel)]="login">
+    <label for="emailInput">Email:</label>
+    <input type="text" class="form-control" id="emailInput" [(ngModel)]="email">
+    <label for="passwordInput">Password:</label>
+    <input type="text" class="form-control" id="passwordInput" [(ngModel)]="password">
+  </div>
+    <!-- как подождать завершения регистрации-->
+  <button type="button" class="btn btn-success btn-md" (click)="createUser()">
+    Subscribe!
+  </button>
 </div>

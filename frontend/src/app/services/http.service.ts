@@ -14,10 +14,12 @@ export class HttpService {
 
   }
 
-  getBillingAccounts(): Observable<Profile[]> {
+  getUsers(): Observable<Profile[]> {
     return this.http.get<Profile[]>('/api/user');
   }
-
+  createUser(newUser: Profile): Observable<Profile> {
+    return this.http.post<Profile>('/api/user', newUser);
+  }
   getSubVariants(): Observable<any> {
     return this.http.get('assets/subscribitionVariants.json')
       .pipe(

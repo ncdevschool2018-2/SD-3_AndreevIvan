@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/services-backend/")
 public class ServiceController {
-    private ServiceService billingAccountService;
+    private ServiceService serviceService;
 
     @Autowired
-    public ServiceController(ServiceService billingAccountService) {
-        this.billingAccountService = billingAccountService;
+    public ServiceController(ServiceService serviceService) {
+        this.serviceService = serviceService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public Iterable<Service> getAllServices() {
-        return billingAccountService.getAllServices();
+        return serviceService.getAllServices();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Service createService(@RequestBody Service account) {
-        return billingAccountService.createService(account);
+    public Service createService(@RequestBody Service service) {
+        return serviceService.createService(service);
     }
 }

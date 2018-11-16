@@ -21,4 +21,12 @@ public class UserAccountDataController {
         return ResponseEntity.ok(userAccountDataService.getAll());
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<UserAccountViewModel> createUser(@RequestBody UserAccountViewModel user /*todo server validation*/) {
+        if (user != null) {
+            return ResponseEntity.ok(userAccountDataService.createUser(user));
+        }
+        return null;
+    }
+
 }

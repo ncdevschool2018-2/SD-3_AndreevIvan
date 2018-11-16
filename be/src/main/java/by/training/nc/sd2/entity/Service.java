@@ -87,9 +87,9 @@ public class Service {
     public String toString() {
         return "BillingAccount{" +
                 "id=" + id +
-                ", address='" + name + '\'' +
-                ", username='" + description + '\'' +
-                ", email='" + basePrice + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", basePrice='" + basePrice + '\'' +
                 '}';
     }
 }

@@ -17,8 +17,8 @@ public class ServicesServiceImpl implements ServiceService {
     }
 
     @Override
-    public Service createService(Service account) {
-        return reprository.save(account);
+    public Service createService(Service service) {
+        return reprository.save(service);
     }
 
     @Override

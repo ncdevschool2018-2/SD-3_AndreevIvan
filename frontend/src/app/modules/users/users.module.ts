@@ -8,6 +8,7 @@ import { ModalModule } from 'ngx-bootstrap';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WavesModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import {
   MatButtonModule,
   MatFormFieldModule,
@@ -32,7 +33,8 @@ import {
     MatProgressSpinnerModule,
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   exports: [
     UsersComponent,

@@ -5,15 +5,46 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserAccountViewModel {
     private int id;
-    private String name;
+    private String login;
     private String email;
     private int tokens;
+    private String password;
+    private String status;
 
-    public UserAccountViewModel(int id, String name, String email, int tokens) {
+    public UserAccountViewModel() {
+    }
+
+    public int getTokens() {
+        return tokens;
+    }
+
+    public UserAccountViewModel(int id, String login, String email, int tokens, String password, String status) {
         this.id = id;
-        this.name = name;
+        this.login = login;
         this.email = email;
         this.tokens = tokens;
+        this.password = password;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setTokens(int tokens) {
+        this.tokens = tokens;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {
@@ -24,12 +55,12 @@ public class UserAccountViewModel {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getEmail() {
@@ -38,13 +69,5 @@ public class UserAccountViewModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public int getTokens() {
-        return tokens;
-    }
-
-    public void setTokens(int tokens) {
-        this.tokens = tokens;
     }
 }

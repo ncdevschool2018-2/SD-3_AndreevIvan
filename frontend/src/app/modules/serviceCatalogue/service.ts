@@ -1,13 +1,13 @@
 export class Service {
-  private _name: string;
-  private _description: string;
-  private _basePrice: string;
+  private name: string;
+  private description: string;
+  private basePrice: string;
   status: string;
 
 
-  constructor(name: string, description: string, basePrice: string) {
-    this._name = name;
-    this._description = description;
-    this._basePrice = basePrice;
+  constructor(name: string, basePrice: string, description: string) {
+    this.name = name;
+    this.description = description;
+    this.basePrice = basePrice;
   }
 }

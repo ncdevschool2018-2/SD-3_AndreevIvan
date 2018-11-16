@@ -84,5 +84,5 @@ export class AppComponent /*implements OnInit */{
       );
   }*/
 
-  // myServices = [{name: 'Eduard'}, {name: 'Aleksandr'}];
+  // myServices = [{login: 'Eduard'}, {login: 'Aleksandr'}];
 }

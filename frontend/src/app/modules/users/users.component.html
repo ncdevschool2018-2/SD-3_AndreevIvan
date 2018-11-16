@@ -1,3 +1,4 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <div class="container">
   <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
     Add service
@@ -9,12 +10,12 @@
 <div class="container">
 
   <input type="search" class="form-control"
-         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search text"
+         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search users by login..."
          (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
   <ul *ngIf="isVisibleUsers == true">
     <li class="list-group-item" *ngFor="let user of users | filter: searchText; let i = index"
-        (mousedown)="showUserManageModal(i)">
-      {{user.name}}
+        (mousedown)="showUserManageModal(user)">
+      {{user.login}}
     </li>
   </ul>
 
@@ -23,7 +24,7 @@
   <input type="search" [(ngModel)]="searchText" placeholder="Search text">
 </div>
 <ul *ngFor="let user of users | filter: searchText">
-  <li>{{user.name}}</li>
+  <li>{{user.login}}</li>
 </ul>
 -->
   <!--<mat-form-field>
@@ -33,8 +34,8 @@
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
     <ng-container *ngIf="!isLoading">
-      <mat-option *ngFor="let user of users" [value]="user.name">
-        <span>{{ user.name }}</span>
+      <mat-option *ngFor="let user of users" [value]="user.login">
+        <span>{{ user.login }}</span>
       </mat-option>
     </ng-container>
   </mat-autocomplete>-->
@@ -48,12 +49,38 @@
           (click)="test()" (blur)="$event.stopPropagation(); $event.returnValue = false">
         <button
           (click)="test()"
-        >{{user.name}}</button>
-        <a href="https://www.google.com/" (click)="test()">{{user.name}}</a>
+        >{{user.login}}</button>
+        <a href="https://www.google.com/" (click)="test()">{{user.login}}</a>
       </li>
     </ul>-->
     <!--[ngClass]="{active: isUserListItemActive()}"
           (blur)="onBlurUserListItem()" (focus)="onFocusUserListItem()"-->
+</div>
+
+<br>
+
+<div class="container table-responsive">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Discribition</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr class="services"
+          *ngFor="let service of services; let i = index">
+        <td>{{service.name}}</td>
+        <td>{{service.description}}</td>
+        <td>
+          <button type="button" class="btn btn-danger btn-md" (click)="deleteService()">
+            Delete service
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <ng-template #userManageTemplate>
@@ -66,10 +93,11 @@
   </div>
   <div class="modal-body">
     <div class="container">
-        <h4>Login: <span class="label label-info">Petya</span></h4><br>
-        <h4>Email: <span class="label label-info">petya@gmail.com</span></h4><br>
-        <h4>Tokens: <span class="label label-info">122</span></h4><br>
-        <h4>Status: <span class="label label-danger">banned</span></h4>
+        <h4>Login: <span class="label label-info">{{selectedUser.login}}</span></h4><br>
+        <h4>Email: <span class="label label-info">{{selectedUser.email}}</span></h4><br>
+        <h4>Tokens: <span class="label label-info">{{selectedUser.tokens}}</span></h4><br>
+        <h4>Status: <span class="label label-danger">{{selectedUser.status}}</span></h4>
+        <br>
           <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
                   data-target="#AddTokens">Add tokens to user
           </button>
@@ -220,108 +248,4 @@
   </div>
 </div>
 
-<!--
-<h1>USERS MODULE</h1>
 
-<table>
-  <tr
-    class="user"
-    *ngFor="let user of users; let i = index"
-  >
-    <td class="name">{{user.name}}</td>
-    <td class="email">{{user.email}}</td>
-    <td class="tokens">{{user.tokens}}</td>
-    <td class="name">
-
-
-      <div
-        class="btn-group"
-        dropdown
-      >
-        <button
-          class="btn btn-primary dropdown-toggle"
-          dropdownToggle
-        >Actions</button>
-
-        <div
-          class="dropdown-menu"
-          *dropdownMenu
-        >
-          <button
-            class="dropdown-item"
-            (click)="editUser(i)"
-          >EditName</button>
-
-          <button
-            class="dropdown-item"
-            (click)="deleteUser(i)"
-          >Delete</button>
-
-          <button
-            class="dropdown-item"
-            (click)="editUserTokens(i)"
-          >Edit Tokens</button>
-
-        </div>
-      </div>
-    </td>
-  </tr>
-</table>
-
-<br><br><br>
-
-<button
-  class="btn btn-primary"
-  (click)="showModal(template)"
->Add User</button>
-
-<ng-template #addUserTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <input
-      (change)="addUserName = $event.target.value"
-    >
-
-    <button
-      class="btn btn-primary"
-      (click)="addUser()"
-    >Add User</button>
-  </div>
-</ng-template>
-
-
-<ng-template #editNameTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <input
-      [value]="currentEditUser.name"
-      (change)="currentEditUser.name = $event.target.value"
-    >
-  </div>
-</ng-template>
-
-<ng-template #editTokensTemplate>
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Please, set tokens number</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <input
-      [value]="currentEditUser.tokens"
-      (change)="currentEditUser.tokens = $event.target.value"
-    >
-  </div>
-</ng-template>
--->
