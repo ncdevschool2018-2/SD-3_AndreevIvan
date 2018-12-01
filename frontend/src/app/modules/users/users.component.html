@@ -1,60 +1,43 @@
 <ng4-loading-spinner></ng4-loading-spinner>
-<div class="container">
-  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
-    Add service
-  </button>
-</div>
 
+<style>
+  hr {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+  }
+</style>
 
 <p></p>
 <div class="container">
 
+
+  <p><em>User Manage:</em></p>
   <input type="search" class="form-control"
          id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search users by login..."
          (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
   <ul *ngIf="isVisibleUsers == true">
-    <li class="list-group-item" *ngFor="let user of users | filter: searchText; let i = index"
-        (mousedown)="showUserManageModal(user)">
-      {{user.login}}
+    <li class="list-group-item" *ngFor="let userAccount of users | filter: searchText; let i = index"
+        (mousedown)="showUserManageModal(userAccount)">
+      {{userAccount.login}}
     </li>
   </ul>
-
-<!--
-<div class="md-form">
-  <input type="search" [(ngModel)]="searchText" placeholder="Search text">
 </div>
-<ul *ngFor="let user of users | filter: searchText">
-  <li>{{user.login}}</li>
-</ul>
--->
-  <!--<mat-form-field>
-    <input title="User login:" type="text" [matAutocomplete]="auto">
-  </mat-form-field>
 
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngIf="isLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
-    <ng-container *ngIf="!isLoading">
-      <mat-option *ngFor="let user of users" [value]="user.login">
-        <span>{{ user.login }}</span>
-      </mat-option>
-    </ng-container>
-  </mat-autocomplete>-->
+<br>
 
-  <!--<input type="search" class="form-control"
-         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search text"
-         (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
-  *ngIf="isVisibleUsers == true" >
-    <ul *ngIf="isVisibleUsers == true">
-      <li class="list-group-item" *ngFor="let user of users | filter: searchText; let i = index"
-          (click)="test()" (blur)="$event.stopPropagation(); $event.returnValue = false">
-        <button
-          (click)="test()"
-        >{{user.login}}</button>
-        <a href="https://www.google.com/" (click)="test()">{{user.login}}</a>
-      </li>
-    </ul>-->
-    <!--[ngClass]="{active: isUserListItemActive()}"
-          (blur)="onBlurUserListItem()" (focus)="onFocusUserListItem()"-->
+<hr>
+
+<div class="container">
+  <p><em>Service Manage:</em></p>
+  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
+    Add service
+  </button>
 </div>
 
 <br>
@@ -64,7 +47,7 @@
     <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
-      <th scope="col">Discribition</th>
+      <th scope="col">Description</th>
       <th scope="col"></th>
     </tr>
     </thead>
@@ -99,10 +82,10 @@
         <h4>Status: <span class="label label-danger">{{selectedUser.status}}</span></h4>
         <br>
           <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
-                  data-target="#AddTokens">Add tokens to user
+                  data-target="#AddTokens">Add tokens to userAccount
           </button>
-          <button class="btn btn-danger btn-sm">Ban this user</button>
-          <button class="btn btn-primary btn-sm">Unban this user</button>
+          <button class="btn btn-danger btn-sm">Ban this userAccount</button>
+          <button class="btn btn-primary btn-sm">Unban this userAccount</button>
     </div>
     <p></p><br>
     <p></p><p></p><p><p><p><p>

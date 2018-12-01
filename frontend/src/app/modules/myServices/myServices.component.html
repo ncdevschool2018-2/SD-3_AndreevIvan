@@ -3,10 +3,10 @@
   <table id="ServiceVariantsTable" class="table table-bordered">
     <thead class="thead-dark">
     <tr>
-      <th scope="col">Logo</th>
       <th scope="col">Name</th>
       <th scope="col">Period</th>
       <th scope="col">Price/period</th>
+      <th scope="col">Days left</th>
       <th scope="col">Status</th>
       <div class="invisible">
         <th scope="col"></th>
@@ -18,10 +18,10 @@
       class="myService"
       *ngFor="let service of myServices; let i = index"
     >
-      <td class="logo">{{service.image}}</td>
-      <td class="login">{{service.login}}</td>
+      <td class="name">{{service.name}}</td>
       <td class="period">{{service.period}}</td>
-      <td class="priceForPeriod">{{service.priceForPeriod}}</td>
+      <td class="basePrice">{{service.basePrice}}</td>
+      <td class="days left">{{service.daysLeft}}</td>
       <td class="status">{{service.status}}</td>
       <td class="unfollowButton">
         <button type="button" class="btn btn-danger btn-sm" (click)="showAcceptUnfollowModal(template); setIndToDelete(i)">

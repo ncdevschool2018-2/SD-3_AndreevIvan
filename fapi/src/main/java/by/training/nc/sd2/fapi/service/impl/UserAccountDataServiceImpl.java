@@ -37,8 +37,8 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
     }
 
     @Override
-    public void deleteBillingAccount(Long id) {
+    public void deleteUserAccount(Long id) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(backendServerUrl + "/api/billing-accounts/" + id);
+        restTemplate.delete(backendServerUrl + "/api/users-backend/" + id);
     }
 }

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {Profile} from 'src/app/modules/users/profile';
 import {Service} from '../modules/serviceCatalogue/service';
+import {UserService} from '../modules/myServices/userService';
 
 
 @Injectable({
@@ -47,14 +48,8 @@ export class HttpService {
       );
   }
 
-  getMyServices(): Observable<any> {
-    return this.http.get('assets/myServices.json')
-      .pipe(
-        catchError(error => {
-          alert('error');
-          return Observable.throw(error);
-        })
-      );
+  getUserServices(id: number): Observable<UserService[]> {
+    return this.http.get<UserService[]>('/api/userService/' + id);
   }
   /*getUsers(): Observable<any> {
     return this.http.get('assets/users.json')

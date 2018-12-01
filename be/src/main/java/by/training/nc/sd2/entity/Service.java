@@ -2,6 +2,7 @@ package by.training.nc.sd2.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -12,8 +13,10 @@ public class Service {
     private int id;
     private String name;
     private String description;
-    private String status;
     private String basePrice;
+
+    @ManyToMany(mappedBy = "havingServices")
+    Set<UserAccount> followedUserAccounts;
 
     public Service(){
 
@@ -23,10 +26,9 @@ public class Service {
         return id;
     }
 
-    public Service(String name, String description, String status, String basePrice) {
+    public Service(String name, String description, String basePrice) {
         this.name = name;
         this.description = description;
-        this.status = status;
         this.basePrice = basePrice;
     }
 
@@ -58,21 +60,12 @@ public class Service {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Service that = (Service) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
+        return  Objects.equals(name, that.name) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(basePrice, that.basePrice);
     }
@@ -80,7 +73,7 @@ public class Service {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, name, description, basePrice);
+        return Objects.hash(name, description, basePrice);
     }
 
     @Override

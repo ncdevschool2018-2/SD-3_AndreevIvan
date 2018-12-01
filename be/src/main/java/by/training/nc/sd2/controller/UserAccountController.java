@@ -1,6 +1,6 @@
 package by.training.nc.sd2.controller;
 
-import by.training.nc.sd2.entity.User;
+import by.training.nc.sd2.entity.UserAccount;
 import by.training.nc.sd2.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/users-backend/")
 public class UserAccountController {
-    private UserAccountService serviceService;
+    private UserAccountService userAccountService;
 
     @Autowired
-    public UserAccountController(UserAccountService serviceService) {
-        this.serviceService = serviceService;
+    public UserAccountController(UserAccountService userAccountService) {
+        this.userAccountService = userAccountService;
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<User> getAllServices() {
-        return serviceService.getAllUsers();
+    public Iterable<UserAccount> getAllServices() {
+        return userAccountService.getAllUserAccounts();
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User createService(@RequestBody User user) {
-        return serviceService.createUser(user);
+    public UserAccount createService(@RequestBody UserAccount userAccount) {
+        return userAccountService.createUserAccount(userAccount);
     }
 }

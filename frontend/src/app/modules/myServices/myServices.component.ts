@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {template} from '@angular/core/src/render3';
+import {UserService} from './userService';
 
 @Component({
   selector: 'myServices',
@@ -13,14 +14,14 @@ export class MyServicesComponent {
 
   modalRef: BsModalRef;
 
-  public myServices: any[];
+  public myServices: UserService[];
   indexToDelete: number;
 
   constructor(private http: HttpService, private modalService: BsModalService) {
-    http.getMyServices()
+    http.getUserServices(1)
       .subscribe(services => this.myServices = services);
   }
-  deleteServiceFromMyServices(serviceIndex: number) {
+  /*deleteServiceFromMyServices(serviceIndex: number) {
     console.log(this.myServices);
     const service = this.myServices[serviceIndex];
 
@@ -28,7 +29,7 @@ export class MyServicesComponent {
       .subscribe(() => {
         this.myServices.splice(serviceIndex, 1);
       });
-  }
+  }*/
 
   setIndToDelete(i: number) {
     this.indexToDelete = i;

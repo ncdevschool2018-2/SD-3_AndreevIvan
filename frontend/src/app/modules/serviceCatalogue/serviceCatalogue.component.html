@@ -1,26 +1,26 @@
 <div class="container table-responsive">
   <table class="table">
     <thead class="thead-dark">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Discribition</th>
-      <th scope="col">Status</th>
-      <div class="invisible">
-        <th scope="col"></th>
-      </div>
-    </tr>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Discribition</th>
+        <th scope="col">Status</th>
+        <div class="invisible">
+          <th scope="col"></th>
+        </div>
+      </tr>
     </thead>
     <tbody>
     <tr class="services"
         *ngFor="let service of services; let i = index">
-      <td>{{service.login}}</td>
+      <td>{{service.name}}</td>
       <td>{{service.description}}</td>
       <td>
         <h4>
           {{service.status}}
         </h4>
       </td>
-      <td *ngIf="getStatus(service) == notOwnedStatus">
+      <td> <!--*ngIf="getStatus(service) == notOwnedStatus"-->
         <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal()">
           Receive
         </button>
@@ -57,7 +57,7 @@
                 <tr class="subVariants"
                   *ngFor="let subVariant of subVariants; let i = index">
                 <td>{{subVariant.period}}</td>
-                <td>{{subVariant.priceForPeriod}}</td>
+                <td>{{subVariant.basePrice}}</td>
                 <td>
                   <button type="button" class="btn btn-success btn-sm" (click)="showAcceptFollowModal()">
                     Subscribe

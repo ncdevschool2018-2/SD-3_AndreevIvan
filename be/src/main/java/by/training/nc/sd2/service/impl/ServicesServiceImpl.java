@@ -1,7 +1,7 @@
 package by.training.nc.sd2.service.impl;
 
 import by.training.nc.sd2.entity.Service;
-import by.training.nc.sd2.reprository.ServiceReprository;
+import by.training.nc.sd2.reprository.ServiceRepository;
 import by.training.nc.sd2.service.ServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class ServicesServiceImpl implements ServiceService {
 
-    private ServiceReprository reprository;
+    private ServiceRepository reprository;
 
     @Autowired
-    public ServicesServiceImpl(ServiceReprository reprository) {
+    public ServicesServiceImpl(ServiceRepository reprository) {
         this.reprository = reprository;
     }
 

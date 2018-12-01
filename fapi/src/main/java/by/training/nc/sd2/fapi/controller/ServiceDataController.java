@@ -23,9 +23,9 @@ public class ServiceDataController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<ServiceViewModel> createService(@RequestBody ServiceViewModel service /*todo server validation*/) {
-        if (service != null) {
-            return ResponseEntity.ok(serviceDataService.createService(service));
+    public ResponseEntity<ServiceViewModel> createService(@RequestBody ServiceViewModel serviceViewModel /*todo server validation*/) {
+        if (serviceViewModel != null) {
+            return ResponseEntity.ok(serviceDataService.createService(serviceViewModel));
         }
         return null;
     }

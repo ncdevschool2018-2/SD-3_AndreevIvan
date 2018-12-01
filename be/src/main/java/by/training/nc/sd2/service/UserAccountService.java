@@ -1,8 +1,8 @@
 package by.training.nc.sd2.service;
 
-import by.training.nc.sd2.entity.User;
+import by.training.nc.sd2.entity.UserAccount;
 
 public interface UserAccountService {
-    User createUser(User service);
-    Iterable<User> getAllUsers();
+    UserAccount createUserAccount(UserAccount service);
+    Iterable<UserAccount> getAllUserAccounts();
 }

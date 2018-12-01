@@ -8,5 +8,5 @@ public interface UserAccountDataService {
     List<UserAccountViewModel> getAll();
     UserAccountViewModel getBillingAccountById(Long id);
     UserAccountViewModel createUser(UserAccountViewModel account);
-    void deleteBillingAccount(Long id);
+    void deleteUserAccount(Long id);
 }

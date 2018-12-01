@@ -26,9 +26,9 @@ export class ServiceCatalogueComponent {
     http.getServices()
       .subscribe(services => this.services = services);
   }
-  getStatus(myServices: any) {
+  /*getStatus(myServices: any) {
     return myServices.status;
-  }
+  }*/
   setIndToFollow(i: number) {
     this.indexToFollow = i;
   }

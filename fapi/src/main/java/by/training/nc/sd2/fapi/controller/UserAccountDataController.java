@@ -17,14 +17,14 @@ public class UserAccountDataController {
     private UserAccountDataService userAccountDataService;
 
     @RequestMapping
-    public ResponseEntity<List<UserAccountViewModel>> getAllBillingAccounts() {
+    public ResponseEntity<List<UserAccountViewModel>> getAllUserAccounts() {
         return ResponseEntity.ok(userAccountDataService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<UserAccountViewModel> createUser(@RequestBody UserAccountViewModel user /*todo server validation*/) {
-        if (user != null) {
-            return ResponseEntity.ok(userAccountDataService.createUser(user));
+    public ResponseEntity<UserAccountViewModel> createUser(@RequestBody UserAccountViewModel userAccountViewModel /*todo server validation*/) {
+        if (userAccountViewModel != null) {
+            return ResponseEntity.ok(userAccountDataService.createUser(userAccountViewModel));
         }
         return null;
     }
