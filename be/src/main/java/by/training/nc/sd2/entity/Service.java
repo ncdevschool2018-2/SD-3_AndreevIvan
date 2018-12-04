@@ -22,9 +22,7 @@ public class Service {
 
     }
 
-    public int getId() {
-        return id;
-    }
+
 
     public Service(String name, String description, String basePrice) {
         this.name = name;
@@ -38,6 +36,10 @@ public class Service {
 
     public void setBasePrice(String basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {

@@ -22,6 +22,7 @@ import {MyProfileModule} from './modules/myProfile/myProfile.module';
 import {ServiceCatalogueComponent} from './modules/serviceCatalogue/serviceCatalogue.component';
 import {ServiceCatalogueModule} from './modules/serviceCatalogue/serviceCatalogue.module';
 import { FilterPipe } from './filter.pipe';
+import {UserIDService} from './services/user.id.service';
 
 
 
@@ -54,7 +55,8 @@ const pathes = [
     AlertModule.forRoot()
   ],
   providers: [
-    HttpService
+    HttpService,
+    UserIDService
   ],
   bootstrap: [AppComponent]
 })

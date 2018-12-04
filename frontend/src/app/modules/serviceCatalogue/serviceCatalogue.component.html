@@ -21,7 +21,7 @@
         </h4>
       </td>
       <td> <!--*ngIf="getStatus(service) == notOwnedStatus"-->
-        <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal()">
+        <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal(i)">
           Receive
         </button>
       </td>
@@ -57,7 +57,7 @@
                 <tr class="subVariants"
                   *ngFor="let subVariant of subVariants; let i = index">
                 <td>{{subVariant.period}}</td>
-                <td>{{subVariant.basePrice}}</td>
+                <td>{{subVariant.subPeriod}}</td>
                 <td>
                   <button type="button" class="btn btn-success btn-sm" (click)="showAcceptFollowModal()">
                     Subscribe

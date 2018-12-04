@@ -28,5 +28,19 @@ public class UserAccountDataController {
         }
         return null;
     }
+    @RequestMapping(value = "/getbydata", method = RequestMethod.GET)
+    public ResponseEntity<UserAccountViewModel> getUserAccountByData(@RequestParam String login, @RequestParam String password) {
+        return ResponseEntity.ok(userAccountDataService.getUserAccountByData(login, password));
+    }
+
+    @RequestMapping(value = "/setTokens", method = RequestMethod.POST)
+    public ResponseEntity<UserAccountViewModel> setUserTokens(@RequestBody UserAccountViewModel accountViewModel){
+        return ResponseEntity.ok(userAccountDataService.setUserTokens(accountViewModel));
+    }
+
+    @RequestMapping(value = "/getbyid", method = RequestMethod.GET)
+    public ResponseEntity<UserAccountViewModel> getUserById(@RequestParam Long id){
+        return ResponseEntity.ok(userAccountDataService.getUserById(id));
+    }
 
 }

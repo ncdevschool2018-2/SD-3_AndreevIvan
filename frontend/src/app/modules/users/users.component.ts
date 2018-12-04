@@ -44,7 +44,7 @@ export class UsersComponent implements OnInit {
   }
   createNewService(serviceName: string, basePrice: string, describition: string) {
     this.spinnerService.show();
-    this.serviceData = new Service(serviceName, basePrice, describition);
+    this.serviceData = new Service(null, serviceName, basePrice, describition);
     console.log(this.serviceData);
     this.http.createService(this.serviceData).subscribe(() => {
       this.spinnerService.hide();

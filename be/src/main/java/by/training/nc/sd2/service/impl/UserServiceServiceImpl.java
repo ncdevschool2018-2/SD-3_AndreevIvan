@@ -28,6 +28,8 @@ public class UserServiceServiceImpl implements UserServiceService {
 
     @Override
     public Iterable<UserService> findUserServicesByUserId(Integer id){
+        Integer id2 = id;
+        System.out.println(id);
         Iterable<UserService> userServices = reprository.findUserServicesByUserId(id);
         int i = 0;
         return reprository.findUserServicesByUserId(id);

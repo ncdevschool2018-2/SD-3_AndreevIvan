@@ -16,12 +16,13 @@ public class UserAccount {
     private int tokens;
     private String password;
     private String status;
+    private int role;
 
     @ManyToMany
     @JoinTable(
-            name = "users-services",
-            joinColumns = @JoinColumn(name = "userId"),
-            inverseJoinColumns = @JoinColumn(name = "serviceId"))
+            name = "users_services",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "service_id"))
     Set<Service> havingServices;
 
 
@@ -29,12 +30,21 @@ public class UserAccount {
     public UserAccount() {
     }
 
-    public UserAccount(String login, String email, int tokens, String password, String status) {
+    public UserAccount(String login, String email, int tokens, String password, String status, int role) {
         this.login = login;
         this.email = email;
         this.tokens = tokens;
         this.password = password;
         this.status = status;
+        this.role = role;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public String getStatus() {
@@ -86,9 +96,22 @@ public class UserAccount {
     }
 
     @Override
-    public int hashCode() {
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserAccount that = (UserAccount) o;
+        return tokens == that.tokens &&
+                role == that.role &&
+                Objects.equals(login, that.login) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(havingServices, that.havingServices);
+    }
 
-        return Objects.hash(id, login, email, tokens);
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, email, tokens, password, status, role, havingServices);
     }
 
     @Override

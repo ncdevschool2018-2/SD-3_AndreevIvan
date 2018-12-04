@@ -30,4 +30,5 @@ public class UsersServiceController {
     public Iterable<UserService> findUserServicesById(@PathVariable(name = "id") Integer id) {
         return userServiceService.findUserServicesByUserId(id);
     }
+
 }

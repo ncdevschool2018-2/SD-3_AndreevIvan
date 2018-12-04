@@ -2,11 +2,14 @@ package by.training.nc.sd2.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.util.Objects;
-
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserServiceViewModel {
 
+    private int id;
+    private int userId;
+    private int subVariant;
+
+    private int subPeriod;
     private int daysLeft;
     private int status;
     private String name;
@@ -15,11 +18,56 @@ public class UserServiceViewModel {
     public UserServiceViewModel() {
     }
 
-    public UserServiceViewModel(int daysLeft, int status, String name, int basePrice) {
+    public UserServiceViewModel(int id, int userId, int subVariant, int subPeriod,
+                                int daysLeft, int status, String name, int basePrice) {
+        this.id = id;
+        this.userId = userId;
+        this.subVariant = subVariant;
+        this.subPeriod = subPeriod;
         this.daysLeft = daysLeft;
         this.status = status;
         this.name = name;
         this.basePrice = basePrice;
+    }
+
+    public int getSubPeriod() {
+        return subPeriod;
+    }
+
+    public void setSubPeriod(int subPeriod) {
+        this.subPeriod = subPeriod;
+    }
+
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getSubVariant() {
+        return subVariant;
+    }
+
+    public void setSubVariant(int subVariant) {
+        this.subVariant = subVariant;
     }
 
     public int getDaysLeft() {
@@ -46,27 +94,4 @@ public class UserServiceViewModel {
         this.name = name;
     }
 
-    public int getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserServiceViewModel that = (UserServiceViewModel) o;
-        return daysLeft == that.daysLeft &&
-                basePrice == that.basePrice &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(daysLeft, status, name, basePrice);
-    }
 }

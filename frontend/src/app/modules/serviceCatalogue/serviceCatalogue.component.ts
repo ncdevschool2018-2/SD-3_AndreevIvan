@@ -33,8 +33,11 @@ export class ServiceCatalogueComponent {
     this.indexToFollow = i;
   }
 
-  showVariantsToFollowModal() {
+  showVariantsToFollowModal(id: number) {
     /*получение вариантов конкретной подписки из базы*/
+    console.log(this.services);
+    console.log(this.services[id]);
+    console.log(this.services[id].id);
     this.http.getSubVariants()
       .subscribe(subVariants => this.subVariants = subVariants);
     this.modalRef = this.modalService.show(this.variantsToFollowTemplate);

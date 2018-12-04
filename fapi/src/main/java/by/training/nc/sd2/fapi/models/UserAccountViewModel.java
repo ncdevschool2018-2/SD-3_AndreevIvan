@@ -10,6 +10,7 @@ public class UserAccountViewModel {
     private int tokens;
     private String password;
     private String status;
+    private int role;
 
     public UserAccountViewModel() {
     }
@@ -18,13 +19,23 @@ public class UserAccountViewModel {
         return tokens;
     }
 
-    public UserAccountViewModel(int id, String login, String email, int tokens, String password, String status) {
+    public UserAccountViewModel(int id, String login, String email, int tokens,
+                                String password, String status, int role) {
         this.id = id;
         this.login = login;
         this.email = email;
         this.tokens = tokens;
         this.password = password;
         this.status = status;
+        this.role = role;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
     public String getStatus() {

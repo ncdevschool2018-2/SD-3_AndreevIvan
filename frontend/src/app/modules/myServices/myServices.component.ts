@@ -1,8 +1,10 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import {HttpService} from '../../services/http.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {template} from '@angular/core/src/render3';
 import {UserService} from './userService';
+import {UserIDService} from '../../services/user.id.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'myServices',
@@ -14,12 +16,18 @@ export class MyServicesComponent {
 
   modalRef: BsModalRef;
 
+  @Input() loggedUserIDObs = this.userIdService.data;
+  loggedUserID;
   public myServices: UserService[];
   indexToDelete: number;
 
-  constructor(private http: HttpService, private modalService: BsModalService) {
-    http.getUserServices(1)
+  constructor(private http: HttpService, private modalService: BsModalService, private userIdService: UserIDService) {
+    this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
+    this.loggedUserID = this.userIdService.getID();
+    console.log('userId into my services: ' + this.loggedUserID);
+    http.getUserServices(this.loggedUserID)
       .subscribe(services => this.myServices = services);
+    console.log(this.myServices);
   }
   /*deleteServiceFromMyServices(serviceIndex: number) {
     console.log(this.myServices);

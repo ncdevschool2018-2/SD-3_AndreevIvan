@@ -17,9 +17,9 @@
   </div>
   <div class="modal-body">
     <input
-      [value]="profile.tokens"
-      (change)="profile.tokens = $event.target.value"
-    >
-    <button type="submit" class="btn btn-primary btn-sm" (click)="modalRef.hide()">Submit</button>
+      [(ngModel)]="tokens">
+    <!--[value]="profile.tokens"
+    (change)="profile.tokens = $event.target.value"-->
+    <button type="submit" class="btn btn-primary btn-sm" (click)="setMyTokens()">Submit</button>
   </div>
 </ng-template>

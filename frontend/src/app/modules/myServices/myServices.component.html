@@ -19,9 +19,9 @@
       *ngFor="let service of myServices; let i = index"
     >
       <td class="name">{{service.name}}</td>
-      <td class="period">{{service.period}}</td>
-      <td class="basePrice">{{service.basePrice}}</td>
-      <td class="days left">{{service.daysLeft}}</td>
+      <td class="subPeriod">{{service.subPeriod}}</td>
+      <td class="priceForPeriod">{{service.basePrice}}</td>
+      <td class="daysLeft">{{service.daysLeft}}</td>
       <td class="status">{{service.status}}</td>
       <td class="unfollowButton">
         <button type="button" class="btn btn-danger btn-sm" (click)="showAcceptUnfollowModal(template); setIndToDelete(i)">

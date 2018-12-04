@@ -1,10 +1,12 @@
 export class Service {
-  private name: string;
-  private description: string;
-  private basePrice: string;
+  id: number;
+  name: string;
+  description: string;
+  basePrice: string;
 
 
-  constructor(name: string, basePrice: string, description: string) {
+  constructor(id: number, name: string, basePrice: string, description: string) {
+    this.id = id;
     this.name = name;
     this.description = description;
     this.basePrice = basePrice;

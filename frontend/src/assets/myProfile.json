@@ -1,2 +1,10 @@
-{"id": "2", "login": "Aleksandr", "email": "aleks@gmail.com", "tokens": "12"}
+{
+  "id": "1",
+  "login": "vanya",
+  "email": "vanyaIcanov@gmail.com",
+  "tokens": "322",
+  "password": "6383743",
+  "status": "legal",
+  "role": "2"
+}
 

@@ -193,14 +193,14 @@
         <div class="form-group">
           <label for="serviceName">Name:</label>
           <input type="text" class="form-control" id="serviceName" [(ngModel)]="serviceName">
-          <label for="basePrice">Base price (for 1 month):</label>
-          <input type="number" class="form-control" id="basePrice" [(ngModel)]="basePrice">
+          <label for="subPeriod">Base price (for 1 month):</label>
+          <input type="number" class="form-control" id="subPeriod" [(ngModel)]="subPeriod">
           <label for="comment">Discribition:</label>
           <textarea class="form-control" rows="5" id="comment" [(ngModel)]="describition"></textarea>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default"  data-dismiss="modal" (click)="createNewService(serviceName, basePrice, describition)">
+        <button type="button" class="btn btn-default"  data-dismiss="modal" (click)="createNewService(serviceName, subPeriod, describition)">
           Create subscribition
         </button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

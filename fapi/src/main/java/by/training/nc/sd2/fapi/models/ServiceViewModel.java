@@ -4,21 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceViewModel {
-    //private int id;
+    private int id;
     private String name;
     private String description;
     private String basePrice;
 
-    /*public int getId() {
-        return id;
-    }*/
 
     public ServiceViewModel(){
 
     }
 
     public ServiceViewModel(int id, String name, String basePrice, String description) {
-        //this.id = id;
+        this.id = id;
         this.name = name;
         this.description = description;
         this.basePrice = basePrice;
@@ -33,12 +30,12 @@ public class ServiceViewModel {
     }
 
     public void setId(int id) {
-        //this.id = id;
+        this.id = id;
     }
 
-    /*public int getId() {
-        //return id;
-    }*/
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

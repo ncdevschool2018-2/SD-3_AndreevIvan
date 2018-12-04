@@ -8,5 +8,8 @@ public interface UserAccountDataService {
     List<UserAccountViewModel> getAll();
     UserAccountViewModel getBillingAccountById(Long id);
     UserAccountViewModel createUser(UserAccountViewModel account);
+    UserAccountViewModel getUserAccountByData(String login, String password);
     void deleteUserAccount(Long id);
+    UserAccountViewModel setUserTokens(UserAccountViewModel account);
+    UserAccountViewModel getUserById(Long id);
 }
