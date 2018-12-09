@@ -1,5 +1,6 @@
 package by.training.nc.sd2.controller;
 
+import by.training.nc.sd2.entity.Service;
 import by.training.nc.sd2.entity.UserAccount;
 import by.training.nc.sd2.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class UserAccountController {
     public Optional<UserAccount> getUserAccountByLoginAndPassword(
             @RequestParam("login") String login, @RequestParam("password") String password) {
         //return userAccountService.getUserAccount("petya", "846513");
+        Optional<UserAccount> userAccount = userAccountService.getUserAccount(login, password);;
         return userAccountService.getUserAccount(login, password);
     }
     @RequestMapping(value = "/setTokens", method = RequestMethod.POST)
@@ -41,5 +43,10 @@ public class UserAccountController {
         //return userAccountService.getUserAccount("petya", "846513");
         return userAccountService.getUserAccountById(id);
     }
+    @RequestMapping(value = "/getServicesFromUserByUserId/{id}", method = RequestMethod.GET)
+    public Iterable<Service> getServicesFromUserByUserId(@PathVariable Integer id) {
+        return userAccountService.getUserAccountById(id).get().getHavingServices();
+    }
+
 
 }

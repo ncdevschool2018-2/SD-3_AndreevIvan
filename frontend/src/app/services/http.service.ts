@@ -38,6 +38,7 @@ export class HttpService {
     return this.http.post<Service>('/api/services', newService);
   }
   getServices(): Observable<Service[]> {
+    console.log('start parsing services...');
     return this.http.get<Service[]>('/api/services');
   }
   getUserById(id: number): Observable<Profile> {
@@ -58,6 +59,13 @@ export class HttpService {
       return;
     }
     return this.http.get<UserService[]>('/api/userService/' + id);
+  }
+
+  getHavingServices(userId: number): Observable<Service[]> {
+    if (userId < 0) {
+      return;
+    }
+    return this.http.get<Service[]>('/api/services/getServicesFromUserByUserId/' + userId);
   }
 
   setUserTokens(editedProfile: Profile): Observable<Profile> {

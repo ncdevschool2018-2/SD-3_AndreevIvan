@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
   onFocusSearchForm() {
     this.http.getUsers().subscribe(accounts => {
       // Parse json response into local array
-      this.users = accounts as Profile[];
+      this.users = accounts;
       this.isVisibleUsers = true;
     });
   }

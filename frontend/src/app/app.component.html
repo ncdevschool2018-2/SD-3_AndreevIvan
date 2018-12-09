@@ -16,10 +16,10 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li [ngClass]="{active: isHomePageActive()}" (click)="setHomePageActive()"><a routerLink="/users">Home</a></li>
         <li [ngClass]="{active: isMyServicesPageActive()}" (click)="setMyServicesPageActive()"><a routerLink="/myProfile">My profile</a></li>
         <li [ngClass]="{active: isCataloguePageActive()}" (click)="setCataloguePageActive()"><a routerLink="/myServices">My services</a></li>
         <li [ngClass]="{active: isMyProfilePageActive()}" (click)="setMyProfilePageActive()"><a routerLink="/serviceCatalogue">Service catalogue</a></li>
+        <li [ngClass]="{active: isHomePageActive()}" (click)="setHomePageActive()"><a routerLink="/users">For Admin</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a routerLink="/signUp"><span class="glyphicon glyphicon-userAccount"></span> Sign Up</a></li>

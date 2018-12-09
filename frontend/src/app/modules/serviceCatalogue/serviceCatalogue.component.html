@@ -12,15 +12,15 @@
     </thead>
     <tbody>
     <tr class="services"
-        *ngFor="let service of services; let i = index">
+        *ngFor="let service of allServices; let i = index">
       <td>{{service.name}}</td>
       <td>{{service.description}}</td>
       <td>
         <h4>
-          {{service.status}}
+          {{getServiceStatus(service)}}
         </h4>
       </td>
-      <td> <!--*ngIf="getStatus(service) == notOwnedStatus"-->
+      <td><!--*ngIf="getStatus(service) == notOwnedStatus"-->
         <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal(i)">
           Receive
         </button>

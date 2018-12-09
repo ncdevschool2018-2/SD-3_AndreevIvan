@@ -80,7 +80,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "BillingAccount{" +
+        return "Service{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

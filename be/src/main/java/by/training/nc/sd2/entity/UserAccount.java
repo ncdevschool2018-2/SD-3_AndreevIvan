@@ -25,8 +25,6 @@ public class UserAccount {
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     Set<Service> havingServices;
 
-
-
     public UserAccount() {
     }
 
@@ -37,6 +35,10 @@ public class UserAccount {
         this.password = password;
         this.status = status;
         this.role = role;
+    }
+
+    public Set<Service> getHavingServices() {
+        return havingServices;
     }
 
     public int getRole() {
@@ -116,7 +118,7 @@ public class UserAccount {
 
     @Override
     public String toString() {
-        return "BillingAccount{" +
+        return "UserAccount{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +

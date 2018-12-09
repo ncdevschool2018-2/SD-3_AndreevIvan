@@ -7,4 +7,5 @@ import java.util.List;
 public interface ServiceDataService {
     List<ServiceViewModel> getAll();
     ServiceViewModel createService(ServiceViewModel account);
+    List<ServiceViewModel> getNativeServicesFromUser(Integer id);
 }

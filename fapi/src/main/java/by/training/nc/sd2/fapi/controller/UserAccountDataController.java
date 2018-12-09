@@ -1,5 +1,6 @@
 package by.training.nc.sd2.fapi.controller;
 
+import by.training.nc.sd2.fapi.models.ServiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

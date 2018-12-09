@@ -34,4 +34,9 @@ public class UserServiceServiceImpl implements UserServiceService {
         int i = 0;
         return reprository.findUserServicesByUserId(id);
     }
+
+    @Override
+    public void updateUserService(UserService service) {
+        reprository.save(service);
+    }
 }

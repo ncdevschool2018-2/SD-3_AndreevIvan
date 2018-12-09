@@ -4,10 +4,7 @@ import by.training.nc.sd2.fapi.models.ServiceViewModel;
 import by.training.nc.sd2.fapi.service.ServiceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,9 @@ public class ServiceDataController {
             return ResponseEntity.ok(serviceDataService.createService(serviceViewModel));
         }
         return null;
+    }
+    @RequestMapping(value = "/getServicesFromUserByUserId/{id}", method = RequestMethod.GET)
+    public ResponseEntity<List<ServiceViewModel>> getNativeServicesFromUser(@PathVariable Integer id) {
+        return ResponseEntity.ok(serviceDataService.getNativeServicesFromUser(id));
     }
 }

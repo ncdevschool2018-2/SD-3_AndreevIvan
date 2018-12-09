@@ -20,12 +20,14 @@ export class MyProfileComponent {
   newTokens: number;
   http2: HttpService;
   httpClient: HttpClient;
+  userIsLogged = false;
 
   constructor(private http: HttpService, private modalService: BsModalService,
               private userIdService: UserIDService) {
     this.currentUserId = NumberConverter(this.userIdService.getID());
     console.log(this.currentUserId);
     if (this.currentUserId > -1) {
+      this.userIsLogged = true;
       this.http.getUserById(this.currentUserId)
         .subscribe(profile => this.profile = profile);
     }

@@ -43,4 +43,14 @@ public class UserAccountServiceImpl implements UserAccountService {
     public Optional<UserAccount> getUserAccountById(Integer id) {
         return this.reprository.findUserAccountById(id);
     }
+
+    @Override
+    public void updateUserAccount(UserAccount account) {
+        this.reprository.save(account);
+    }
+
+    @Override
+    public Optional<UserAccount> getServicesFromUserByUserId(Integer id) {
+        return this.reprository.findUserAccountById(id);
+    }
 }

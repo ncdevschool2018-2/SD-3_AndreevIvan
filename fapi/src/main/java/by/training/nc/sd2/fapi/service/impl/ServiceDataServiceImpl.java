@@ -18,8 +18,8 @@ public class ServiceDataServiceImpl implements ServiceDataService {
     @Override
     public List<ServiceViewModel> getAll() {
         RestTemplate restTemplate = new RestTemplate();
-        ServiceViewModel[] billingAccountViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/services-backend/", ServiceViewModel[].class);
-        return billingAccountViewModelResponse == null ? Collections.emptyList() : Arrays.asList(billingAccountViewModelResponse);
+        ServiceViewModel[] serviceViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/services-backend/", ServiceViewModel[].class);
+        return serviceViewModelResponse == null ? Collections.emptyList() : Arrays.asList(serviceViewModelResponse);
     }
     @Override
     public ServiceViewModel createService(ServiceViewModel service) {
@@ -28,4 +28,10 @@ public class ServiceDataServiceImpl implements ServiceDataService {
         return restTemplate.postForEntity(backendServerUrl + "/api/services-backend/", service, ServiceViewModel.class).getBody();
     }
 
+    @Override
+    public List<ServiceViewModel> getNativeServicesFromUser(Integer id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ServiceViewModel[] serviceViewModelResponse = restTemplate.getForObject(backendServerUrl + "/api/users-backend/getServicesFromUserByUserId/" + id, ServiceViewModel[].class);
+        return serviceViewModelResponse == null ? Collections.emptyList() : Arrays.asList(serviceViewModelResponse);
+    }
 }

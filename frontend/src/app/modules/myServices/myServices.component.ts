@@ -25,8 +25,10 @@ export class MyServicesComponent {
     this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
     this.loggedUserID = this.userIdService.getID();
     console.log('userId into my services: ' + this.loggedUserID);
-    http.getUserServices(this.loggedUserID)
-      .subscribe(services => this.myServices = services);
+    if (this.loggedUserID > -1) {
+      http.getUserServices(this.loggedUserID)
+        .subscribe(services => this.myServices = services);
+    }
     console.log(this.myServices);
   }
   /*deleteServiceFromMyServices(serviceIndex: number) {
