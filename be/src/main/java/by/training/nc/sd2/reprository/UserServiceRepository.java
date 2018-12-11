@@ -11,8 +11,7 @@ import java.util.List;
 
 @Repository
 public interface UserServiceRepository extends CrudRepository<UserService, Integer> {
-    Iterable<UserService> findUserServicesByUserId(Integer id);
-    //Iterable<UserService> findByUserId(Integer id);
+    Iterable<UserService> findByUserId(Integer id);
 
     /*@Query( value = "SELECT * FROM user_service_data WHERE userId = 1",
             nativeQuery = true)

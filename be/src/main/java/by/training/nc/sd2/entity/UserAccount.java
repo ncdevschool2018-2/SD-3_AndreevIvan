@@ -2,14 +2,14 @@ package by.training.nc.sd2.entity;
 
 
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
     private String login;
     private String email;
@@ -18,27 +18,30 @@ public class UserAccount {
     private String status;
     private int role;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_services",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_id"))
-    Set<Service> havingServices;
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<UserService> userServices = new ArrayList<>();
 
     public UserAccount() {
     }
 
-    public UserAccount(String login, String email, int tokens, String password, String status, int role) {
+    public UserAccount(String login, String email, int tokens,
+                       String password, String status, int role, List<UserService> userServices) {
         this.login = login;
         this.email = email;
         this.tokens = tokens;
         this.password = password;
         this.status = status;
         this.role = role;
+        this.userServices = userServices;
     }
 
-    public Set<Service> getHavingServices() {
-        return havingServices;
+    public List<UserService> getUserServices() {
+        return userServices;
+    }
+
+    public void setUserServices(List<UserService> userServices) {
+        this.userServices = userServices;
     }
 
     public int getRole() {
@@ -102,18 +105,18 @@ public class UserAccount {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserAccount that = (UserAccount) o;
-        return tokens == that.tokens &&
+        return id == that.id &&
+                tokens == that.tokens &&
                 role == that.role &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(password, that.password) &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(havingServices, that.havingServices);
+                Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, email, tokens, password, status, role, havingServices);
+        return Objects.hash(id, login, email, tokens, password, status, role);
     }
 
     @Override
@@ -122,8 +125,11 @@ public class UserAccount {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", email='" + email + '\'' +
-                ", tokens='" + tokens + '\'' +
-                ", password='" + password+ '\'' +
+                ", tokens=" + tokens +
+                ", password='" + password + '\'' +
+                ", status='" + status + '\'' +
+                ", role=" + role +
+                ", userServices=" + userServices.size() +
                 '}';
     }
 }

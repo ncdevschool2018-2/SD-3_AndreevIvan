@@ -21,10 +21,12 @@ export class MyProfileComponent {
   http2: HttpService;
   httpClient: HttpClient;
   userIsLogged = false;
+  loggedUserID: number;
 
   constructor(private http: HttpService, private modalService: BsModalService,
               private userIdService: UserIDService) {
-    this.currentUserId = NumberConverter(this.userIdService.getID());
+    // this.currentUserId = NumberConverter(this.userIdService.getID());
+    this.currentUserId = parseInt(localStorage.getItem('loggedUserId'), 10);
     console.log(this.currentUserId);
     if (this.currentUserId > -1) {
       this.userIsLogged = true;
@@ -38,11 +40,8 @@ export class MyProfileComponent {
   }
   setMyTokens() {
     this.modalRef.hide();
-    console.log('current user id for tokens: ' + this.currentUserId);
-    console.log('current user tokens to set: ' + this.profile.tokens);
-    console.log(this.profile);
     this.profile.tokens = this.tokens;
-    this.http.setUserTokens(this.profile).subscribe(newProfile => this.newTokens = newProfile.tokens);
+    this.http.updateUser(this.profile).subscribe(newProfile => this.newTokens = newProfile.tokens);
     console.log('current user tokens after setting: ' + this.newTokens);
   }
 }

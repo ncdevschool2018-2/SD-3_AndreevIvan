@@ -11,6 +11,21 @@
     border-width: 0 0 1px 0;
     border-radius: 20px;
   }
+  table {
+    width: 100%;
+  }
+  thead th {
+    height: 10px;
+
+    /*text-align: left;*/
+  }
+
+  .userServicesBody {
+    height: 230px;
+    overflow-y: auto;
+  }
+
+
 </style>
 
 <p></p>
@@ -57,7 +72,7 @@
         <td>{{service.name}}</td>
         <td>{{service.description}}</td>
         <td>
-          <button type="button" class="btn btn-danger btn-md" (click)="deleteService()">
+          <button type="button" class="btn btn-danger btn-md" (click)="deleteService(service.id)">
             Delete service
           </button>
         </td>
@@ -76,27 +91,28 @@
   </div>
   <div class="modal-body">
     <div class="container">
+        <br><br>
         <h4>Login: <span class="label label-info">{{selectedUser.login}}</span></h4><br>
         <h4>Email: <span class="label label-info">{{selectedUser.email}}</span></h4><br>
         <h4>Tokens: <span class="label label-info">{{selectedUser.tokens}}</span></h4><br>
         <h4>Status: <span class="label label-danger">{{selectedUser.status}}</span></h4>
         <br>
           <button type="submit" class="btn btn-warning btn-sm" data-toggle="modal"
-                  data-target="#AddTokens">Add tokens to userAccount
+                  data-target="#AddTokens" (click)="showEditUserTokensModal()">
+            Add tokens to userAccount
           </button>
-          <button class="btn btn-danger btn-sm">Ban this userAccount</button>
-          <button class="btn btn-primary btn-sm">Unban this userAccount</button>
+          <button class="btn btn-danger btn-sm" (click)="showAcceptBanUserTemplate()">Ban this user</button>
+          <button class="btn btn-primary btn-sm" (click)="showAcceptUnbanUserTemplate()">Unban this user</button>
     </div>
     <p></p><br>
     <p></p><p></p><p><p><p><p>
     <div class="table-responsive">
 
-      <table id="ServiceVariantsTable" class="table table-bordered">
+      <table id="ServiceVariantsTable" class="table table-fixed">
         <thead class="thead-dark">
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Period</th>
-          <th scope="col">Price/period</th>
           <th scope="col">Status</th>
           <div class="invisible">
             <th scope="col"></th>
@@ -106,78 +122,40 @@
           </div>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-          <td>Name X</td>
-          <td>Period X</td>
-          <td>price</td>
+        <tbody class="userServicesBody">
+        <tr class="userServices" *ngFor="let service of selectedUser.userServices; let i = index">
+          <td>{{service.name}}</td>
+          <td>{{service.subPeriod}}</td>
           <td>
-            <h4>
+            <h4 *ngIf="service.status === 1">
 									<span class="label label-success">
-										Active
+										active
+									</span>
+            </h4>
+            <h4 *ngIf="service.status === 2">
+									<span class="label label-danger">
+										banned
 									</span>
             </h4>
           </td>
           <td>
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
+            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel"
+                    (click)="showAcceptBanUserServiceTemplate(); setEditedUserService(service)">
               Ban service
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel"
+                    (click)="showAcceptUnbanUserServiceTemplate(); setEditedUserService(service)">
               Unban service
             </button>
           </td>
         </tr>
-
-        <tr>
-          <td>Name X</td>
-          <td>Period X</td>
-          <td>Price X</td>
-          <td>
-            <h4>
-									<span class="label label-success">
-										Active
-									</span>
-            </h4>
-          </td>
-          <td>
-            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#AcceptServiceBanModel">
-              Ban service
-            </button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#AcceptServiceUnbanModel">
-              Unban service
-            </button>
-          </td>
-        </tr>
-
         </tbody>
       </table>
     </div>
   </div>
 </ng-template>
-
-<div id="AcceptServiceBanModel" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Are you sure about this ban?</h4>
-      </div>
-      <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 <div id="AddServiceModel" class="modal fade" role="dialog">
@@ -211,24 +189,70 @@
   </div>
 </div>
 
-<div id="AcceptServiceUnbanModel" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<ng-template #acceptBanUserTemplate>
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Are you sure about this unban?</h4>
-      </div>
-      <div class="modal-body">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Are you sure?</h4>
   </div>
-</div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="userBanAction(); modalRef.hide()">Yes</button>
+    <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
+  </div>
+
+</ng-template>
+
+<ng-template #acceptUnbanUserTemplate>
 
 
+
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Are you sure?</h4>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="userUnbanAction(); modalRef.hide()">Yes</button>
+    <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
+  </div>
+
+</ng-template>
+
+<ng-template #acceptBanUserServiceTemplate>
+
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Are you sure?</h4>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="userServiceBanAction(); modalRef.hide()">Yes</button>
+    <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
+  </div>
+
+</ng-template>
+
+<ng-template #acceptUnbanUserServiceTemplate>
+
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Are you sure?</h4>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="userServiceUnBanAction(); modalRef.hide()">Yes</button>
+    <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
+  </div>
+
+</ng-template>
+
+<ng-template #editTokensTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Please, set tokens number</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input
+      [(ngModel)]="currentUserTokens">
+    <button type="submit" class="btn btn-primary btn-sm" (click)="setMyTokens()">Submit</button>
+  </div>
+</ng-template>

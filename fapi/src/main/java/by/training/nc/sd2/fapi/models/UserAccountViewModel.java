@@ -2,6 +2,9 @@ package by.training.nc.sd2.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+import java.util.Set;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserAccountViewModel {
     private int id;
@@ -12,22 +15,21 @@ public class UserAccountViewModel {
     private String status;
     private int role;
 
+    private List<UserServiceViewModel> userServices;
+
     public UserAccountViewModel() {
+    }
+
+    public List<UserServiceViewModel> getUserServices() {
+        return userServices;
+    }
+
+    public void setUserServices(List<UserServiceViewModel> userServices) {
+        this.userServices = userServices;
     }
 
     public int getTokens() {
         return tokens;
-    }
-
-    public UserAccountViewModel(int id, String login, String email, int tokens,
-                                String password, String status, int role) {
-        this.id = id;
-        this.login = login;
-        this.email = email;
-        this.tokens = tokens;
-        this.password = password;
-        this.status = status;
-        this.role = role;
     }
 
     public int getRole() {

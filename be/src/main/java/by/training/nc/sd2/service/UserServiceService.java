@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserServiceService {
     UserService createUserService(UserService service);
     Iterable<UserService> getAllUserServices();
-    Iterable<UserService> findUserServicesByUserId(Integer id);
     void updateUserService(UserService service);
+    Iterable<UserService> findUserServicesByUserId(Integer id);
+    void deleteUserService(Integer id);
 }

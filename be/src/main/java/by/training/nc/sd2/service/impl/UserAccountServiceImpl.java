@@ -25,6 +25,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public Iterable<UserAccount> getAllUserAccounts() {
+        Iterable<UserAccount> userAccounts = reprository.findAll();
         return reprository.findAll();
     }
 

@@ -1,3 +1,5 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+
 <div class="container table-responsive">
   <table class="table">
     <thead class="thead-dark">
@@ -20,8 +22,9 @@
           {{getServiceStatus(service)}}
         </h4>
       </td>
-      <td><!--*ngIf="getStatus(service) == notOwnedStatus"-->
-        <button type="button" class="btn btn-warning btn" (click)="showVariantsToFollowModal(i)">
+      <td *ngIf=toShowSubscribeButton(getServiceStatus(service))>
+        <button type="button" class="btn btn-warning btn"
+                (click)="showVariantsToFollowModal(i); setServiceToSubscribe(service)">
           Receive
         </button>
       </td>
@@ -46,7 +49,7 @@
             <table id="ServiceVariantsTable" class="table table-bordered">
               <thead class="thead-dark">
               <tr>
-                <th scope="col">Period</th>
+                <th scope="col">Period(days)</th>
                 <th scope="col">Price/period</th>
                 <div class="invisible">
                   <th scope="col"></th>
@@ -57,9 +60,10 @@
                 <tr class="subVariants"
                   *ngFor="let subVariant of subVariants; let i = index">
                 <td>{{subVariant.period}}</td>
-                <td>{{subVariant.subPeriod}}</td>
+                <td>{{serviceToFollow.basePrice*(i+1)}} tokens</td>
                 <td>
-                  <button type="button" class="btn btn-success btn-sm" (click)="showAcceptFollowModal()">
+                  <button type="button" class="btn btn-success btn-sm"
+                          (click)="showAcceptFollowModal(i+1, subVariant.period)">
                     Subscribe
                   </button>
                 </td>
@@ -85,10 +89,46 @@
           <h4 class="modal-title">Are you sure?</h4>
         </div>
         <div class="modal-body">
-          <button type="button" class="btn btn-primary"(click)="acceptFollowing()">Yes</button>
+          <button type="button" class="btn btn-primary"(click)="subscribeOperation(); modalRef.hide()">Yes</button>
           <button type="button" class="btn btn-danger"(click)="modalRef.hide()">No</button>
         </div>
         <div class="modal-footer">
         </div>
+
+</ng-template>
+
+<ng-template #successfulOperation>
+
+
+  <br><br><br><br><br><br><br><br><br>
+  <!-- Modal content-->
+
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Operation successful completed!!!</h4>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="modalRef.hide(); refreshWindow()">Ok</button>
+  </div>
+  <div class="modal-footer">
+  </div>
+
+</ng-template>
+
+<ng-template #badOperation>
+
+
+  <br><br><br><br><br><br><br><br><br>
+  <!-- Modal content-->
+
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef.hide()"></button>
+    <h4 class="modal-title">Oops, something wrong!</h4>
+  </div>
+  <div class="modal-body">
+    <button type="button" class="btn btn-primary"(click)="modalRef.hide()">Ok</button>
+  </div>
+  <div class="modal-footer">
+  </div>
 
 </ng-template>

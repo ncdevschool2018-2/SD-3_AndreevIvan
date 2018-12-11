@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap';
 import {ServiceCatalogueComponent} from './serviceCatalogue.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import {ServiceCatalogueComponent} from './serviceCatalogue.component';
     FormsModule,
     ButtonsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   exports: [
     ServiceCatalogueComponent

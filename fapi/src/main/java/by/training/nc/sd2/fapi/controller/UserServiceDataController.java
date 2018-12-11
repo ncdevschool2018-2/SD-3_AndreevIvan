@@ -33,6 +33,9 @@ public class UserServiceDataController {
         }
         return null;
     }
-
+    @RequestMapping(value = "/deleteuserservice/{id}", method = RequestMethod.DELETE)
+    public void deleteUserService(@PathVariable String id) {
+        userServiceDataService.deleteUserService(Long.valueOf(id));
+    }
 
 }

@@ -58,7 +58,7 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
     @Override
     public UserAccountViewModel setUserTokens(UserAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/users-backend/setTokens",
+        return restTemplate.postForEntity(backendServerUrl + "/api/users-backend/updateUser",
                 account, UserAccountViewModel.class).getBody();
     }
 

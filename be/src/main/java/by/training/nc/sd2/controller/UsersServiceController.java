@@ -25,10 +25,12 @@ public class UsersServiceController {
     public UserService createService(@RequestBody UserService userAccount) {
         return userServiceService.createUserService(userAccount);
     }
-
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void deleteService(@PathVariable(name = "id") Integer id) {
+        userServiceService.deleteUserService(id);
+    }
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<UserService> findUserServicesById(@PathVariable(name = "id") Integer id) {
         return userServiceService.findUserServicesByUserId(id);
     }
-
 }

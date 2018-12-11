@@ -1,8 +1,9 @@
 package by.training.nc.sd2.entity;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -10,24 +11,33 @@ import java.util.Set;
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private int id;
     private String name;
     private String description;
     private String basePrice;
 
-    @ManyToMany(mappedBy = "havingServices")
-    Set<UserAccount> followedUserAccounts;
+    @OneToMany
+    @JoinColumn(name = "service_id")
+    private List<UserService> userServices = new ArrayList<>();
 
     public Service(){
 
     }
 
-
-
-    public Service(String name, String description, String basePrice) {
+    public Service(String name, String description, String basePrice, List<UserService> userServices) {
         this.name = name;
         this.description = description;
         this.basePrice = basePrice;
+        this.userServices = userServices;
+    }
+
+    public List<UserService> getUserServices() {
+        return userServices;
+    }
+
+    public void setUserServices(List<UserService> userServices) {
+        this.userServices = userServices;
     }
 
     public String getBasePrice() {
@@ -62,20 +72,21 @@ public class Service {
         this.description = description;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Service that = (Service) o;
-        return  Objects.equals(name, that.name) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(basePrice, that.basePrice);
+        Service service = (Service) o;
+        return id == service.id &&
+                Objects.equals(name, service.name) &&
+                Objects.equals(description, service.description) &&
+                Objects.equals(basePrice, service.basePrice);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(name, description, basePrice);
+        return Objects.hash(id, name, description, basePrice);
     }
 
     @Override
@@ -85,6 +96,7 @@ public class Service {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", basePrice='" + basePrice + '\'' +
+                ", userServices=" + userServices.size() +
                 '}';
     }
 }

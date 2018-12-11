@@ -16,14 +16,16 @@ export class MyServicesComponent {
 
   modalRef: BsModalRef;
 
-  @Input() loggedUserIDObs = this.userIdService.data;
-  loggedUserID;
+  /*@Input() loggedUserIDObs = this.userIdService.data;
+  loggedUserID;*/
+  loggedUserID: number;
   public myServices: UserService[];
   indexToDelete: number;
 
   constructor(private http: HttpService, private modalService: BsModalService, private userIdService: UserIDService) {
-    this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
-    this.loggedUserID = this.userIdService.getID();
+    /*this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
+    this.loggedUserID = this.userIdService.getID();*/
+    this.loggedUserID = parseInt(localStorage.getItem('loggedUserId'), 10);
     console.log('userId into my services: ' + this.loggedUserID);
     if (this.loggedUserID > -1) {
       http.getUserServices(this.loggedUserID)
@@ -31,16 +33,15 @@ export class MyServicesComponent {
     }
     console.log(this.myServices);
   }
-  /*deleteServiceFromMyServices(serviceIndex: number) {
-    console.log(this.myServices);
-    const service = this.myServices[serviceIndex];
-
-    this.http.deleteServiceFromMyServices(service.id)
-      .subscribe(() => {
-        this.myServices.splice(serviceIndex, 1);
-      });
-  }*/
-
+  deleteMyService(id: number) {
+    this.http.deleteUserService(id.toString()).subscribe(() => {
+      this.refreshMyServices();
+    });
+  }
+  refreshMyServices() {
+    this.http.getUserServices(this.loggedUserID)
+      .subscribe(services => this.myServices = services);
+  }
   setIndToDelete(i: number) {
     this.indexToDelete = i;
   }

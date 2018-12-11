@@ -20,11 +20,12 @@
     >
       <td class="name">{{service.name}}</td>
       <td class="subPeriod">{{service.subPeriod}}</td>
-      <td class="priceForPeriod">{{service.basePrice}}</td>
+      <td class="priceForPeriod">{{service.basePrice*service.subVariant}}</td>
       <td class="daysLeft">{{service.daysLeft}}</td>
       <td class="status">{{service.status}}</td>
       <td class="unfollowButton">
-        <button type="button" class="btn btn-danger btn-sm" (click)="showAcceptUnfollowModal(template); setIndToDelete(i)">
+        <button type="button" class="btn btn-danger btn-sm"
+                (click)="showAcceptUnfollowModal(template); setIndToDelete(service.id)">
           Unfollow
         </button>
       </td>
@@ -45,7 +46,7 @@
   </div>
   <div class="modal-body">
     <button type="button" class="btn btn-primary"
-            (click)="deleteServiceFromMyServices(indexToDelete); modalRef.hide()">Yes</button>
+            (click)="deleteMyService(indexToDelete); modalRef.hide()">Yes</button>
     <button type="button" class="btn btn-danger" (click)="modalRef.hide()">No</button>
   </div>
 </ng-template>

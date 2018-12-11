@@ -2,6 +2,9 @@ package by.training.nc.sd2.fapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.util.List;
+import java.util.Set;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceViewModel {
     private int id;
@@ -9,16 +12,18 @@ public class ServiceViewModel {
     private String description;
     private String basePrice;
 
+    private List<UserServiceViewModel> userServices;
 
     public ServiceViewModel(){
 
     }
 
-    public ServiceViewModel(int id, String name, String basePrice, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.basePrice = basePrice;
+    public List<UserServiceViewModel> getUserServices() {
+        return userServices;
+    }
+
+    public void setUserServices(List<UserServiceViewModel> userServices) {
+        this.userServices = userServices;
     }
 
     public String getBasePrice() {

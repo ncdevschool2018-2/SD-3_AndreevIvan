@@ -34,4 +34,9 @@ public class UserServiceDataServiceImpl implements UserServiceDataService {
         UserServiceViewModel[] userServiceViewModels = restTemplate.getForObject(backendServerUrl + "/api/users-services-backend/" + id, UserServiceViewModel[].class);
         return userServiceViewModels == null ? Collections.emptyList() : Arrays.asList(userServiceViewModels);
     }
+    @Override
+    public void deleteUserService(Long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/users-services-backend/delete/" + id);
+    }
 }

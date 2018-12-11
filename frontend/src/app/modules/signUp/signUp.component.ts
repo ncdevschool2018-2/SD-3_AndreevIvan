@@ -27,8 +27,10 @@ export class SignUpComponent {
     this.role = 2;
     this.user = new SignUpProfile(this.login, this.email, this.tokens, this.password, this.status, this.role);
     console.log(this.user);
-    this.http.createUser(this.user).subscribe(() => {
+    this.http.createUser(this.user).subscribe((createdUser) => {
       this.spinnerService.hide();
+      localStorage.setItem('loggedUserId', createdUser.id.toString());
+      console.log('created user: ', createdUser);
       this.router.navigate(['/serviceCatalogue']);
     });
   }

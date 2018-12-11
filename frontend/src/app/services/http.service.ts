@@ -33,9 +33,12 @@ export class HttpService {
       );
   }
   createService(newService: Service): Observable<Service> {
-    console.log('26');
     console.log(newService);
     return this.http.post<Service>('/api/services', newService);
+  }
+  createUserService(newUserService: UserService): Observable<UserService> {
+    console.log(newUserService);
+    return this.http.post<UserService>('/api/userService', newUserService);
   }
   getServices(): Observable<Service[]> {
     console.log('start parsing services...');
@@ -68,43 +71,21 @@ export class HttpService {
     return this.http.get<Service[]>('/api/services/getServicesFromUserByUserId/' + userId);
   }
 
-  setUserTokens(editedProfile: Profile): Observable<Profile> {
+  updateUser(editedProfile: Profile): Observable<Profile> {
     if (editedProfile.id < 0) {
-      console.log('user is not logged in!!!');
+      console.log('invalid user!!!');
       return;
     }
-    console.log('start setUserTokens()');
+    console.log('start updateUser()');
     console.log(editedProfile);
-    return this.http.post<Profile>('/api/user/setTokens', editedProfile);
+    return this.http.post<Profile>('/api/user/updateUser', editedProfile);
 
   }
-  /*getUsers(): Observable<any> {
-    return this.http.get('assets/users.json')
-      .pipe(
-        catchError(error => {
-            alert('error');
-          return Observable.throw(error);
-        })
-      );
-  }*/
 
-  deleteServiceFromMyServices(id: string): Observable<any> {
-    return this.http.get('assets/myServices.json', {params: {id}})
-      .pipe(
-        catchError(error => {
-          alert('error');
-          return Observable.throw(error);
-        })
-      );
+  deleteService(id: string): Observable<void> {
+    return this.http.delete<void>('api/services/' + id);
   }
-
-  deleteUser(id: string): Observable<any> {
-    return this.http.get('assets/users.json', {params: {id}})
-      .pipe(
-        catchError(error => {
-          alert('error');
-          return Observable.throw(error);
-        })
-      );
+  deleteUserService(id: string): Observable<void> {
+    return this.http.delete<void>('api/userService/deleteuserservice/' + id);
   }
 }

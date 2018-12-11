@@ -8,5 +8,6 @@ public interface UserServiceDataService {
     List<UserServiceViewModel> findUserServicesById(Long id);
     List<UserServiceViewModel> getAll();
     UserServiceViewModel createUserService(UserServiceViewModel account);
+    void deleteUserService(Long id);
 
 }

@@ -19,7 +19,7 @@ public class UserAccountController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public Iterable<UserAccount> getAllServices() {
+    public Iterable<UserAccount> getAllUsers() {
         return userAccountService.getAllUserAccounts();
     }
 
@@ -34,7 +34,7 @@ public class UserAccountController {
         Optional<UserAccount> userAccount = userAccountService.getUserAccount(login, password);;
         return userAccountService.getUserAccount(login, password);
     }
-    @RequestMapping(value = "/setTokens", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public UserAccount setUserTokens(@RequestBody UserAccount userAccount) {
         return userAccountService.setUserTokens(userAccount);
     }
@@ -43,10 +43,10 @@ public class UserAccountController {
         //return userAccountService.getUserAccount("petya", "846513");
         return userAccountService.getUserAccountById(id);
     }
-    @RequestMapping(value = "/getServicesFromUserByUserId/{id}", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/getServicesFromUserByUserId/{id}", method = RequestMethod.GET)
     public Iterable<Service> getServicesFromUserByUserId(@PathVariable Integer id) {
         return userAccountService.getUserAccountById(id).get().getHavingServices();
-    }
+    }*/
 
 
 }

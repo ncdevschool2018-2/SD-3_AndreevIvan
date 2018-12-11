@@ -1,6 +1,6 @@
 [
-  {"id": "1", "period": "1", "priceForPeriod": "40"},
-  {"id": "2", "period": "3", "priceForPeriod": "55"},
-  {"id": "3", "period": "6", "priceForPeriod": "75"},
-  {"id": "4", "period": "12", "priceForPeriod": "90"}
+  {"id": "1", "period": "30", "priceForPeriod": "40"},
+  {"id": "2", "period": "90", "priceForPeriod": "55"},
+  {"id": "3", "period": "180", "priceForPeriod": "75"},
+  {"id": "4", "period": "360", "priceForPeriod": "90"}
 ]

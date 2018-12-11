@@ -21,6 +21,8 @@ export class LogInComponent {
       userRet => {this.user = userRet;
         console.log('userId into sign in: ' + this.user.id);
         this.userIdService.setID(this.user.id);
+        localStorage.setItem('loggedUserId', this.user.id.toString());
+
         this.router.navigate(['/myServices']);
         // this.router.navigate(['/myServices']);
       });

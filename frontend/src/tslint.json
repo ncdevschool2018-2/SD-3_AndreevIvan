@@ -12,5 +12,8 @@
             "element",
             "app"
         ]
-    }
+    },
+    "lib": [
+      "dom"
+    ]
 }

@@ -7,6 +7,7 @@ public class UserServiceViewModel {
 
     private int id;
     private int userId;
+    private int serviceId;
     private int subVariant;
 
     private int subPeriod;
@@ -18,16 +19,20 @@ public class UserServiceViewModel {
     public UserServiceViewModel() {
     }
 
-    public UserServiceViewModel(int id, int userId, int subVariant, int subPeriod,
-                                int daysLeft, int status, String name, int basePrice) {
-        this.id = id;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
         this.userId = userId;
-        this.subVariant = subVariant;
-        this.subPeriod = subPeriod;
-        this.daysLeft = daysLeft;
-        this.status = status;
-        this.name = name;
-        this.basePrice = basePrice;
+    }
+
+    public int getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(int serviceId) {
+        this.serviceId = serviceId;
     }
 
     public int getSubPeriod() {
@@ -52,14 +57,6 @@ public class UserServiceViewModel {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public int getSubVariant() {
@@ -93,5 +90,6 @@ public class UserServiceViewModel {
     public void setName(String name) {
         this.name = name;
     }
+
 
 }

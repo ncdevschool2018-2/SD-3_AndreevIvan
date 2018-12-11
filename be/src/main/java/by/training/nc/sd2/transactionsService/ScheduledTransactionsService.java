@@ -32,7 +32,7 @@ public class ScheduledTransactionsService {
 
     @Scheduled(cron="*/5 * * * * *")
     public void calculateTransactions(){
-        Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
+        /*Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
         userServicesData.forEach(userServicesDataUnit -> {
             System.out.println(userServicesDataUnit.getDaysLeft());
             Optional<UserAccount> userAccount =
@@ -64,6 +64,6 @@ public class ScheduledTransactionsService {
                 userServicesDataUnit.setDaysLeft(userServicesDataUnit.getDaysLeft() - 1);
                 userServiceService.updateUserService(userServicesDataUnit);
             }
-        });
+        });*/
     }
 }

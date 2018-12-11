@@ -34,7 +34,7 @@ public class UserAccountDataController {
         return ResponseEntity.ok(userAccountDataService.getUserAccountByData(login, password));
     }
 
-    @RequestMapping(value = "/setTokens", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     public ResponseEntity<UserAccountViewModel> setUserTokens(@RequestBody UserAccountViewModel accountViewModel){
         return ResponseEntity.ok(userAccountDataService.setUserTokens(accountViewModel));
     }

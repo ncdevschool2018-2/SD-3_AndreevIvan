@@ -16,7 +16,7 @@ public class ServiceDataController {
 
     @RequestMapping/*(method = RequestMethod.GET)*/
     public ResponseEntity<List<ServiceViewModel>> getAll() {
-        //ResponseEntity<List<ServiceViewModel>> responseEntity = ResponseEntity.ok(serviceDataService.getAll());
+        ResponseEntity<List<ServiceViewModel>> responseEntity = ResponseEntity.ok(serviceDataService.getAll());
 
         return ResponseEntity.ok(serviceDataService.getAll());
     }
@@ -31,5 +31,9 @@ public class ServiceDataController {
     @RequestMapping(value = "/getServicesFromUserByUserId/{id}", method = RequestMethod.GET)
     public ResponseEntity<List<ServiceViewModel>> getNativeServicesFromUser(@PathVariable Integer id) {
         return ResponseEntity.ok(serviceDataService.getNativeServicesFromUser(id));
+    }
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteService(@PathVariable String id) {
+        serviceDataService.deleteService(Long.valueOf(id));
     }
 }
