@@ -40,6 +40,12 @@ export class HttpService {
     console.log(newUserService);
     return this.http.post<UserService>('/api/userService', newUserService);
   }
+  updateUserService(status: number, userId: number, serviceId: number): Observable<void> {
+    let params = new HttpParams().set('status', status.toString());
+    params = params.set('userId', userId.toString());
+    params = params.set('serviceId', serviceId.toString());
+    return this.http.get<void>('/api/userService/updateStatus/', {params: params});
+  }
   getServices(): Observable<Service[]> {
     console.log('start parsing services...');
     return this.http.get<Service[]>('/api/services');

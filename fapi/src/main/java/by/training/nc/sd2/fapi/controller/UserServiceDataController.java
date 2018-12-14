@@ -26,6 +26,12 @@ public class UserServiceDataController {
         return ResponseEntity.ok(userServiceDataService.findUserServicesById(id));
     }
 
+    @RequestMapping(value = "/updateStatus", method = RequestMethod.GET)
+    public void updateUserService(@RequestParam String status, @RequestParam String userId, @RequestParam String serviceId/*todo server validation*/) {
+        userServiceDataService.updateUserServiceStatus(
+                Integer.parseInt(status), Integer.parseInt(userId), Integer.parseInt(serviceId));
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<UserServiceViewModel> createUserService(@RequestBody UserServiceViewModel userServiceViewModel /*todo server validation*/) {
         if (userServiceViewModel != null) {

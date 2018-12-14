@@ -7,8 +7,10 @@ import by.training.nc.sd2.entity.UserService;
 import by.training.nc.sd2.service.UserAccountService;
 import by.training.nc.sd2.service.UserServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -21,28 +23,26 @@ public class ScheduledTransactionsService {
     private UserAccountService userAccountService;
     private UserServiceService userServiceService;
 
-
     @Autowired
     public ScheduledTransactionsService (UserAccountService userAccountService,
                                          UserServiceService userServiceService) {
         this.userAccountService = userAccountService;
         this.userServiceService = userServiceService;
     }
-
-
+    @Transactional
     @Scheduled(cron="*/5 * * * * *")
     public void calculateTransactions(){
-        /*Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
+        Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
         userServicesData.forEach(userServicesDataUnit -> {
             System.out.println(userServicesDataUnit.getDaysLeft());
             Optional<UserAccount> userAccount =
                     userAccountService.getUserAccountById(userServicesDataUnit.getUserId());
-            userAccount.ifPresent(theUser -> {
+            /*userAccount.ifPresent(theUser -> {
                 if (theUser.getTokens() >= (userServicesDataUnit.getBasePrice() * userServicesDataUnit.getSubVariant())) {
                     userServicesDataUnit.setStatus(ACTIVE);
                     userAccountService.updateUserAccount(theUser);
                 }
-            });
+            });*/
             if(userServicesDataUnit.getStatus() == ACTIVE) {
                 if (userServicesDataUnit.getDaysLeft() == 0) {
                     userAccount.ifPresent(theUser -> {
@@ -64,6 +64,6 @@ public class ScheduledTransactionsService {
                 userServicesDataUnit.setDaysLeft(userServicesDataUnit.getDaysLeft() - 1);
                 userServiceService.updateUserService(userServicesDataUnit);
             }
-        });*/
+        });
     }
 }

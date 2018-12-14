@@ -22,7 +22,18 @@
       <td class="subPeriod">{{service.subPeriod}}</td>
       <td class="priceForPeriod">{{service.basePrice*service.subVariant}}</td>
       <td class="daysLeft">{{service.daysLeft}}</td>
-      <td class="status">{{service.status}}</td>
+      <td class="status">
+        <h4 *ngIf="service.status === 1">
+							 		<span class="label label-success">
+										active
+									</span>
+        </h4>
+        <h4 *ngIf="service.status === 2">
+									<span class="label label-danger">
+										banned
+									</span>
+        </h4>
+      </td>
       <td class="unfollowButton">
         <button type="button" class="btn btn-danger btn-sm"
                 (click)="showAcceptUnfollowModal(template); setIndToDelete(service.id)">

@@ -9,5 +9,6 @@ public interface UserServiceDataService {
     List<UserServiceViewModel> getAll();
     UserServiceViewModel createUserService(UserServiceViewModel account);
     void deleteUserService(Long id);
+    void updateUserServiceStatus(Integer status, Integer userId, Integer serviceId);
 
 }

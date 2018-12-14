@@ -29,13 +29,33 @@ export class UsersComponent implements OnInit {
   serviceName: string;
   basePrice: string;
   describition: string;
+  currentUserId: number;
   currentUserTokens: number;
+  profile: Profile;
   editedUserService: UserService;
   newCurrentUserTokens: number;
   serviceData: Service;
+  isAdmin: boolean;
   public services: Service[];
   constructor(private http: HttpService, private modalService: BsModalService,
               private spinnerService: Ng4LoadingSpinnerService) {
+    this.currentUserId = parseInt(localStorage.getItem('loggedUserId'), 10);
+    console.log(this.currentUserId);
+    if (this.currentUserId > -1) {
+      this.http.getUserById(this.currentUserId)
+        .subscribe(profile => {
+          this.profile = profile;
+          console.log(profile);
+          if (this.profile.role === UserRole.Admin) {
+            console.log('Is admin');
+            this.isAdmin = true;
+          } else {
+            console.log('Not admin');
+            this.isAdmin = false;
+          }
+        });
+      console.log(this.profile);
+    }
     http.getServices()
       .subscribe(services => this.services = services);
   }
@@ -77,15 +97,17 @@ export class UsersComponent implements OnInit {
     this.editedUserService = userService;
   }
   userServiceBanAction() {
-    this.editedUserService.status = 2;
-    this.http.createUserService(this.editedUserService).subscribe(userService => {
-      this.editedUserService = userService;
+    console.log('userId: ' + this.editedUserService.userId);
+    console.log('serviceId' + this.editedUserService.serviceId);
+    this.http.updateUserService(UserServiceStatus.Banned, this.editedUserService.userId, this.editedUserService.serviceId)
+      .subscribe(() => {
+      this.editedUserService.status = UserServiceStatus.Banned;
     });
   }
   userServiceUnBanAction() {
-    this.editedUserService.status = 1;
-    this.http.createUserService(this.editedUserService).subscribe(userService => {
-      this.editedUserService = userService;
+    this.http.updateUserService(UserServiceStatus.Active, this.editedUserService.userId, this.editedUserService.serviceId)
+      .subscribe(() => {
+        this.editedUserService.status = UserServiceStatus.Active;
     });
   }
   refreshServices() {
@@ -141,4 +163,12 @@ export class UsersComponent implements OnInit {
   test() {
     console.log('25');
   }
+}
+enum UserServiceStatus {
+  Active = 1,
+  Banned = 2
+}
+enum UserRole {
+  Admin = 1,
+  User = 2
 }

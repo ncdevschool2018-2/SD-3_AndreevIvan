@@ -39,4 +39,14 @@ public class UserServiceDataServiceImpl implements UserServiceDataService {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.delete(backendServerUrl + "/api/users-services-backend/delete/" + id);
     }
+
+    @Override
+    public void updateUserServiceStatus(Integer status, Integer userId, Integer serviceId) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForObject(backendServerUrl + "api/users-services-backend/?status=" + status +
+                        "&userId=" + userId + "&serviceId=" + serviceId,
+                UserServiceViewModel .class);
+    }
+
+
 }

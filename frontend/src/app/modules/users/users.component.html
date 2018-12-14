@@ -28,57 +28,61 @@
 
 </style>
 
-<p></p>
-<div class="container">
+<div *ngIf="isAdmin">
+  <p></p>
+  <div class="container">
+    <p><em>User Manage:</em></p>
+    <input type="search" class="form-control"
+           id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search users by login..."
+           (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
+    <ul *ngIf="isVisibleUsers == true">
+      <li class="list-group-item" *ngFor="let userAccount of users | filter: searchText; let i = index"
+          (mousedown)="showUserManageModal(userAccount)">
+        {{userAccount.login}}
+      </li>
+    </ul>
+  </div>
 
+  <br>
 
-  <p><em>User Manage:</em></p>
-  <input type="search" class="form-control"
-         id="UserLoginInput" [(ngModel)]="searchText" placeholder="Search users by login..."
-         (blur)="onBlurSearchForm()" (focus)="onFocusSearchForm()">
-  <ul *ngIf="isVisibleUsers == true">
-    <li class="list-group-item" *ngFor="let userAccount of users | filter: searchText; let i = index"
-        (mousedown)="showUserManageModal(userAccount)">
-      {{userAccount.login}}
-    </li>
-  </ul>
-</div>
+  <hr>
 
-<br>
+  <div class="container">
+    <p><em>Service Manage:</em></p>
+    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
+      Add service
+    </button>
+  </div>
 
-<hr>
+  <br>
 
-<div class="container">
-  <p><em>Service Manage:</em></p>
-  <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#AddServiceModel">
-    Add service
-  </button>
-</div>
-
-<br>
-
-<div class="container table-responsive">
-  <table class="table">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col"></th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr class="services"
-          *ngFor="let service of services; let i = index">
-        <td>{{service.name}}</td>
-        <td>{{service.description}}</td>
-        <td>
-          <button type="button" class="btn btn-danger btn-md" (click)="deleteService(service.id)">
-            Delete service
-          </button>
-        </td>
+  <div class="container table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col"></th>
       </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr class="services"
+            *ngFor="let service of services; let i = index">
+          <td>{{service.name}}</td>
+          <td>{{service.description}}</td>
+          <td>
+            <button type="button" class="btn btn-danger btn-md" (click)="deleteService(service.id)">
+              Delete service
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="container" *ngIf="!isAdmin">
+  <h4>You are not admin!!!</h4>
 </div>
 
 <ng-template #userManageTemplate>

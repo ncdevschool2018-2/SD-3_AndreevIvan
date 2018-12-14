@@ -6,6 +6,8 @@ import by.training.nc.sd2.service.UserServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/users-services-backend/")
 public class UsersServiceController {
@@ -32,5 +34,13 @@ public class UsersServiceController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<UserService> findUserServicesById(@PathVariable(name = "id") Integer id) {
         return userServiceService.findUserServicesByUserId(id);
+    }
+    @RequestMapping(value = "", params = {"status", "userId", "serviceId"}, method = RequestMethod.GET)
+    public void getUserAccountByLoginAndPassword(
+            @RequestParam("status") String status, @RequestParam("userId") String userId,
+            @RequestParam("serviceId") String serviceId) {
+        userServiceService.updateUserServiceStatus(
+                Integer.parseInt(status), Integer.parseInt(userId),
+                Integer.parseInt(serviceId));
     }
 }

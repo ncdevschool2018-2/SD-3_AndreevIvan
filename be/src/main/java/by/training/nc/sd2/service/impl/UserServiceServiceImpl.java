@@ -5,6 +5,9 @@ import by.training.nc.sd2.reprository.UserServiceRepository;
 import by.training.nc.sd2.service.UserServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 
 @Component
@@ -43,5 +46,9 @@ public class UserServiceServiceImpl implements UserServiceService {
         Iterable<UserService> userServices = reprository.findByUserId(id);
         int i = 0;
         return reprository.findByUserId(id);
+    }
+    @Override
+    public void updateUserServiceStatus(Integer status, Integer userId, Integer serviceId) {
+        reprository.updateUserServiceStatus(status, userId, serviceId);
     }
 }
