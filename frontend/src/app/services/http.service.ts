@@ -7,6 +7,7 @@ import {Service} from '../modules/serviceCatalogue/service';
 import {UserService} from '../modules/myServices/userService';
 import {SignUpProfile} from '../modules/signUp/signUp.component';
 import {stringify} from 'querystring';
+import {AuthInfo} from '../modules/logIn/logIn.component';
 
 
 @Injectable({
@@ -54,15 +55,25 @@ export class HttpService {
     const params = new HttpParams().set('id', id.toString());
     return this.http.get<Profile>('api/user/getbyid/', {params: params});
   }
-  getUserByLoginAndPassword(login: string, password: string): Observable<Profile> {
+  isUserExists(login: string): Observable<boolean> {
+    const params = new HttpParams().set('login', login.toString());
+    return this.http.get<boolean>('api/user/isUserExists/', {params: params});
+  }
+  /*getUserByLoginAndPassword(login: string, password: string): Observable<Profile> {
     console.log('start getUser()');
     let params = new HttpParams().set('login', login);
     params = params.set('password', password);
     console.log('parsed login: ' + login);
     console.log('parsed password: ' + password);
     return this.http.get<Profile>('/api/user/getbydata', {params: params});
-  }
+  }*/
 
+  getUserByLoginAndPassword(authInfo: AuthInfo): Observable<Profile> {
+    console.log('start getUser()');
+    console.log('parsed login: ' + authInfo.login);
+    console.log('parsed password: ' + authInfo.password);
+    return this.http.post<Profile>('/api/user/getbydata', authInfo);
+  }
   getUserServices(id: number): Observable<UserService[]> {
     if (id < 0) {
       return;

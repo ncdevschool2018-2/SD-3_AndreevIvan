@@ -17,6 +17,8 @@ import java.util.Optional;
 public interface UserAccountRepository extends CrudRepository<UserAccount, Long> {
     Optional<UserAccount> findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
     Optional<UserAccount> findUserAccountById(@Param("id") Integer id);
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM UserAccount u WHERE u.login = :login")
+    Boolean existsByLogin(String login);
     /*@Modifying
     @Query("UPDATE UserAccount u SET u.tokens = :tokens WHERE u.id = :id")
     Optional<Long> setUserTokens(@Param("id")Long id, @Param("tokens") Long tokens);

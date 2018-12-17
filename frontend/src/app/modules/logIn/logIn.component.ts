@@ -13,16 +13,23 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 })
 export class LogInComponent {
   @ViewChild('userBannedTemplate') userBannedTemplate;
+  @ViewChild('unknownUserTemplate') unknownUserTemplate;
   login: string;
   password: string;
+  authInfo: AuthInfo;
   private user: Profile;
   modalRef: BsModalRef;
   constructor(private http: HttpService, private modalService: BsModalService,
               private userIdService: UserIDService, private router: Router) {
   }
   signIn(login: string, password: string): void {
-    this.http.getUserByLoginAndPassword(login, password).subscribe(
+    this.authInfo = new AuthInfo(login, password);
+    this.http.getUserByLoginAndPassword(this.authInfo).subscribe(
       userRet => {
+        if (!userRet) {
+          this.showUnknownUserModal();
+          return;
+        }
         if (userRet.status === 'banned') {
           this.showUserBannedModal();
           return;
@@ -39,7 +46,18 @@ export class LogInComponent {
   showUserBannedModal() {
     this.modalRef = this.modalService.show(this.userBannedTemplate);
   }
+  showUnknownUserModal() {
+    this.modalRef = this.modalService.show(this.unknownUserTemplate);
+  }
   /*goToMyServices() {
     this.router.navigate(['/myServices']);
   }*/
+}
+export class AuthInfo {
+  login: string;
+  password: string;
+  constructor(login: string, password: string) {
+    this.login = login;
+    this.password = password;
+  }
 }

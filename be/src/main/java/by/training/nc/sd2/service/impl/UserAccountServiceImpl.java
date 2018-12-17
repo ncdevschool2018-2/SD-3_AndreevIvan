@@ -54,4 +54,10 @@ public class UserAccountServiceImpl implements UserAccountService {
     public Optional<UserAccount> getServicesFromUserByUserId(Integer id) {
         return this.reprository.findUserAccountById(id);
     }
+
+    @Override
+    public Boolean isUserExists(String login) {
+        Boolean isExists = this.reprository.existsByLogin(login);
+        return this.reprository.existsByLogin(login);
+    }
 }

@@ -1,5 +1,6 @@
 package by.training.nc.sd2.fapi.service.impl;
 
+import by.training.nc.sd2.fapi.models.AuthInfoModel;
 import by.training.nc.sd2.fapi.models.UserAccountViewModel;
 import by.training.nc.sd2.fapi.service.UserAccountDataService;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,7 +39,8 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
     @Override
     public UserAccountViewModel createUser(UserAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/users-backend/", account, UserAccountViewModel.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/users-backend/", account, UserAccountViewModel.class)
+                .getBody();
     }
 
     @Override
@@ -48,11 +50,10 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
     }
 
     @Override
-    public UserAccountViewModel getUserAccountByData(String login, String password) {
+    public UserAccountViewModel getUserAccountByData(AuthInfoModel authInfoModel) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl + "api/users-backend/?login=" + login +
-                        "&password=" + password,
-                UserAccountViewModel.class, login, password);
+        return restTemplate.postForEntity(backendServerUrl + "api/users-backend/getUser", authInfoModel, UserAccountViewModel.class)
+                .getBody();
     }
 
     @Override
@@ -67,5 +68,12 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(backendServerUrl + "api/users-backend/?id=" + id,
                 UserAccountViewModel.class, id);
+    }
+
+    @Override
+    public Boolean isUserExists(String login) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "api/users-backend/isUserExists/?login=" + login,
+                Boolean.class, login);
     }
 }

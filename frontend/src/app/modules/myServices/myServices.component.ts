@@ -21,6 +21,7 @@ export class MyServicesComponent {
   loggedUserID: number;
   public myServices: UserService[];
   indexToDelete: number;
+  isServicesExist: boolean;
 
   constructor(private http: HttpService, private modalService: BsModalService, private userIdService: UserIDService) {
     /*this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
@@ -29,7 +30,9 @@ export class MyServicesComponent {
     console.log('userId into my services: ' + this.loggedUserID);
     if (this.loggedUserID > -1) {
       http.getUserServices(this.loggedUserID)
-        .subscribe(services => this.myServices = services);
+        .subscribe(services => {
+          this.myServices = services;
+        });
     }
     console.log(this.myServices);
   }

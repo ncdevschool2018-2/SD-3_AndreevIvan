@@ -34,6 +34,12 @@ export class MyProfileComponent {
         .subscribe(profile => this.profile = profile);
     }
   }
+  logOut() {
+    localStorage.setItem('loggedUserId', '-1');
+  }
+  refresh(): void {
+    window.location.reload();
+  }
   showEditTokensModal() {
     console.log(this.profile);
     this.modalRef = this.modalService.show(this.editTokensTemplate);

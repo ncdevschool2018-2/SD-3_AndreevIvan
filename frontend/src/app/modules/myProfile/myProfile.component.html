@@ -10,6 +10,12 @@
   </h4>
 </div>
 
+<div class="container" *ngIf=userIsLogged (click)="refresh()">
+  <button type="submit" class="btn btn-primary btn-sm" (click)="logOut()">
+    Log out
+  </button>
+</div>
+
 <div class="container" *ngIf=!userIsLogged>
   <h4>You are not logged in!!!</h4>
 </div>

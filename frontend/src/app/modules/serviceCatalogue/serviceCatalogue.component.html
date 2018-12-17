@@ -1,38 +1,39 @@
 <ng4-loading-spinner></ng4-loading-spinner>
 
-<div class="container table-responsive">
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Discribition</th>
-        <th scope="col">Status</th>
-        <div class="invisible">
-          <th scope="col"></th>
-        </div>
+<div *ngIf="(this.loggedUserID > -1) && (this.loggedUser !== undefined)">
+  <div class="container table-responsive">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Discribition</th>
+          <th scope="col">Status</th>
+          <div class="invisible">
+            <th scope="col"></th>
+          </div>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="services"
+          *ngFor="let service of allServices; let i = index">
+        <td>{{service.name}}</td>
+        <td>{{service.description}}</td>
+        <td>
+          <h4>
+            {{getServiceStatus(service)}}
+          </h4>
+        </td>
+        <td *ngIf=toShowSubscribeButton(getServiceStatus(service))>
+          <button type="button" class="btn btn-warning btn"
+                  (click)="showVariantsToFollowModal(i); setServiceToSubscribe(service)">
+            Receive
+          </button>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-    <tr class="services"
-        *ngFor="let service of allServices; let i = index">
-      <td>{{service.name}}</td>
-      <td>{{service.description}}</td>
-      <td>
-        <h4>
-          {{getServiceStatus(service)}}
-        </h4>
-      </td>
-      <td *ngIf=toShowSubscribeButton(getServiceStatus(service))>
-        <button type="button" class="btn btn-warning btn"
-                (click)="showVariantsToFollowModal(i); setServiceToSubscribe(service)">
-          Receive
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
-
 
 <ng-template #variantsToFollowTemplate>
 

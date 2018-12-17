@@ -12,4 +12,5 @@ public interface UserAccountService {
     Optional<UserAccount> getUserAccountById(Integer id);
     void updateUserAccount(UserAccount account);
     Optional<UserAccount> getServicesFromUserByUserId(Integer id);
+    Boolean isUserExists(String login);
 }

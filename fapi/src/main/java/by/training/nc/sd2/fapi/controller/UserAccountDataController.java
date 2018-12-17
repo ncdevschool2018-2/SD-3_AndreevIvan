@@ -1,5 +1,6 @@
 package by.training.nc.sd2.fapi.controller;
 
+import by.training.nc.sd2.fapi.models.AuthInfoModel;
 import by.training.nc.sd2.fapi.models.ServiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,9 @@ public class UserAccountDataController {
         }
         return null;
     }
-    @RequestMapping(value = "/getbydata", method = RequestMethod.GET)
-    public ResponseEntity<UserAccountViewModel> getUserAccountByData(@RequestParam String login, @RequestParam String password) {
-        return ResponseEntity.ok(userAccountDataService.getUserAccountByData(login, password));
+    @RequestMapping(value = "/getbydata", method = RequestMethod.POST)
+    public ResponseEntity<UserAccountViewModel> getUserAccountByData(@RequestBody AuthInfoModel authInfoModel) {
+        return ResponseEntity.ok(userAccountDataService.getUserAccountByData(authInfoModel));
     }
 
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
@@ -43,5 +44,8 @@ public class UserAccountDataController {
     public ResponseEntity<UserAccountViewModel> getUserById(@RequestParam Long id){
         return ResponseEntity.ok(userAccountDataService.getUserById(id));
     }
-
+    @RequestMapping(value = "/isUserExists", method = RequestMethod.GET)
+    public ResponseEntity<Boolean> isUserExists(@RequestParam String login){
+        return ResponseEntity.ok(userAccountDataService.isUserExists(login));
+    }
 }

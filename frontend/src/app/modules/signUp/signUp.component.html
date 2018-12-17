@@ -1,15 +1,47 @@
 <ng4-loading-spinner></ng4-loading-spinner>
+
 <div class="container">
-  <div class="form-group">
-    <label for="loginInput">Login:</label>
-    <input type="text" class="form-control" id="loginInput" [(ngModel)]="login">
-    <label for="emailInput">Email:</label>
-    <input type="text" class="form-control" id="emailInput" [(ngModel)]="email">
-    <label for="passwordInput">Password:</label>
-    <input type="text" class="form-control" id="passwordInput" [(ngModel)]="password">
-  </div>
-    <!-- как подождать завершения регистрации-->
-  <button type="button" class="btn btn-success btn-md" (click)="createUser()">
-    Subscribe!
-  </button>
+  <form>
+    <div class="form-group">
+      <label for="loginInput">Login:</label>
+      <input type="text" class="form-control" id="loginInput" placeholder="Enter login" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email address</label>
+      <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
+             placeholder="Enter email" maxlength="100">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Password</label>
+      <input type="password" class="form-control" id="passwordInput" placeholder="Password" maxlength="100">
+    </div>
+    <button type="button" class="btn btn-success btn-md" (click)="createUser()">
+      Subscribe!
+    </button>
+  </form>
 </div>
+
+<ng-template #userExistsTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">User with this login is already exists</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button type="submit" class="btn btn-primary btn-sm" (click)="modalRef.hide()">Ok</button>
+  </div>
+</ng-template>
+
+<ng-template #successfulCreatedTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Successful</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <button type="submit" class="btn btn-primary btn-sm" (click)="navigateToCatalogue(); modalRef.hide()">Go to service catalogue</button>
+  </div>
+</ng-template>
