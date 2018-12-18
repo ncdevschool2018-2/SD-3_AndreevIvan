@@ -32,17 +32,17 @@ public class ScheduledTransactionsService {
     @Transactional
     @Scheduled(cron="*/5 * * * * *")
     public void calculateTransactions(){
-        Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
+        /*Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
         userServicesData.forEach(userServicesDataUnit -> {
             System.out.println(userServicesDataUnit.getDaysLeft());
             Optional<UserAccount> userAccount =
                     userAccountService.getUserAccountById(userServicesDataUnit.getUserId());
-            /*userAccount.ifPresent(theUser -> {
-                if (theUser.getTokens() >= (userServicesDataUnit.getBasePrice() * userServicesDataUnit.getSubVariant())) {
-                    userServicesDataUnit.setStatus(ACTIVE);
-                    userAccountService.updateUserAccount(theUser);
-                }
-            });*/
+            //userAccount.ifPresent(theUser -> {
+            //    if (theUser.getTokens() >= (userServicesDataUnit.getBasePrice() * userServicesDataUnit.getSubVariant())) {
+            //        userServicesDataUnit.setStatus(ACTIVE);
+            //        userAccountService.updateUserAccount(theUser);
+            //    }
+            //});
             if(userServicesDataUnit.getStatus() == ACTIVE) {
                 if (userServicesDataUnit.getDaysLeft() == 0) {
                     userAccount.ifPresent(theUser -> {
@@ -64,6 +64,6 @@ public class ScheduledTransactionsService {
                 userServicesDataUnit.setDaysLeft(userServicesDataUnit.getDaysLeft() - 1);
                 userServiceService.updateUserService(userServicesDataUnit);
             }
-        });
+        });*/
     }
 }

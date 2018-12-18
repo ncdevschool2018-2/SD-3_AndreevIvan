@@ -24,7 +24,6 @@ public class ServiceDataServiceImpl implements ServiceDataService {
     @Override
     public ServiceViewModel createService(ServiceViewModel service) {
         RestTemplate restTemplate = new RestTemplate();
-        System.out.println(service.getName());
         return restTemplate.postForEntity(backendServerUrl + "/api/services-backend/", service, ServiceViewModel.class).getBody();
     }
 

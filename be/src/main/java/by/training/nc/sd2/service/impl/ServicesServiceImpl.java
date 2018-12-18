@@ -23,7 +23,6 @@ public class ServicesServiceImpl implements ServiceService {
 
     @Override
     public Iterable<Service> getAllServices() {
-        Iterable<Service> services = reprository.findAll();
         return reprository.findAll();
     }
     @Override

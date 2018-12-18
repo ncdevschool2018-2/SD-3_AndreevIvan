@@ -14,7 +14,7 @@ public class ServiceDataController {
     @Autowired
     private ServiceDataService serviceDataService;
 
-    @RequestMapping/*(method = RequestMethod.GET)*/
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ServiceViewModel>> getAll() {
         ResponseEntity<List<ServiceViewModel>> responseEntity = ResponseEntity.ok(serviceDataService.getAll());
 

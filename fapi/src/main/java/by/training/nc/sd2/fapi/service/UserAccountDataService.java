@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface UserAccountDataService {
     List<UserAccountViewModel> getAll();
-    UserAccountViewModel getBillingAccountById(Long id);
     UserAccountViewModel createUser(UserAccountViewModel account);
     UserAccountViewModel getUserAccountByData(AuthInfoModel authInfoModel);
     void deleteUserAccount(Long id);

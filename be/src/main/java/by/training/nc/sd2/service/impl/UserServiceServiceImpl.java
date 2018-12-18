@@ -26,7 +26,6 @@ public class UserServiceServiceImpl implements UserServiceService {
 
     @Override
     public Iterable<UserService> getAllUserServices() {
-        Iterable<UserService> userServices = reprository.findAll();
         return reprository.findAll();
     }
 
@@ -41,10 +40,6 @@ public class UserServiceServiceImpl implements UserServiceService {
     }
     @Override
     public Iterable<UserService> findUserServicesByUserId(Integer id){
-        Integer id2 = id;
-        System.out.println(id);
-        Iterable<UserService> userServices = reprository.findByUserId(id);
-        int i = 0;
         return reprository.findByUserId(id);
     }
     @Override

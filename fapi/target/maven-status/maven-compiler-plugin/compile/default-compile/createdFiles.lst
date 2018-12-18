@@ -1,10 +1,15 @@
 by\training\nc\sd2\fapi\service\impl\ServiceDataServiceImpl.class
+by\training\nc\sd2\fapi\controller\UserServiceDataController.class
 by\training\nc\sd2\fapi\models\ServiceViewModel.class
 by\training\nc\sd2\fapi\service\impl\UserAccountDataServiceImpl.class
+by\training\nc\sd2\fapi\service\impl\UserServiceDataServiceImpl.class
 by\training\nc\sd2\fapi\service\UserAccountDataService.class
-by\training\nc\sd2\fapi\controller\UserAccountDataController.class
 by\training\nc\sd2\fapi\models\UserAccountViewModel.class
+by\training\nc\sd2\fapi\models\AuthInfoModel.class
+by\training\nc\sd2\fapi\controller\UserAccountDataController.class
 by\training\nc\sd2\fapi\controller\ServiceDataController.class
 by\training\nc\sd2\fapi\service\ServiceDataService.class
+by\training\nc\sd2\fapi\service\UserServiceDataService.class
 by\training\nc\sd2\fapi\FapiApplication.class
 by\training\nc\sd2\fapi\filter\CorsFilter.class
+by\training\nc\sd2\fapi\models\UserServiceViewModel.class

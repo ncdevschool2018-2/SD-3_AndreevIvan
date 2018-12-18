@@ -32,11 +32,6 @@ public class UserAccountDataServiceImpl implements UserAccountDataService {
     }
 
     @Override
-    public UserAccountViewModel getBillingAccountById(Long id) {
-        return null;
-    }
-
-    @Override
     public UserAccountViewModel createUser(UserAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/users-backend/", account, UserAccountViewModel.class)
