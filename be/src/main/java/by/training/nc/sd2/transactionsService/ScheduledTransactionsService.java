@@ -34,7 +34,6 @@ public class ScheduledTransactionsService {
     public void calculateTransactions(){
         Iterable<UserService> userServicesData = userServiceService.getAllUserServices();
         userServicesData.forEach(userServicesDataUnit -> {
-            System.out.println(userServicesDataUnit.getDaysLeft());
             Optional<UserAccount> userAccount =
                     userAccountService.getUserAccountById(userServicesDataUnit.getUserId());
             //userAccount.ifPresent(theUser -> {
