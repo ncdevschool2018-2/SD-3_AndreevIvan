@@ -44,6 +44,7 @@ export class ServiceCatalogueComponent {
               private spinnerService: Ng4LoadingSpinnerService) {
     // this.loggedUserIDObs.subscribe(loggedUserID => this.loggedUserID = loggedUserID);
     this.loggedUserID = parseInt(localStorage.getItem('loggedUserId'), 10);
+    console.log(this.loggedUserID);
     if (this.loggedUserID > -1) {
       this.userIsLogged = true;
       http.getServices()

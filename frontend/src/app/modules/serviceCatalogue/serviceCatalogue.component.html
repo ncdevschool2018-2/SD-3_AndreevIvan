@@ -1,6 +1,10 @@
 <ng4-loading-spinner></ng4-loading-spinner>
 
-<div *ngIf="(this.loggedUserID > -1) && (this.loggedUser !== undefined)">
+<div class="container" *ngIf="this.loggedUserID < 0">
+  <h4>You are not logged in!!!</h4>
+</div>
+
+<div *ngIf="(this.loggedUserID > -1)">
   <div class="container table-responsive">
     <table class="table">
       <thead class="thead-dark">

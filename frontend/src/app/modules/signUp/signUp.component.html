@@ -4,19 +4,24 @@
   <form>
     <div class="form-group">
       <label for="loginInput">Login:</label>
-      <input type="text" class="form-control" id="loginInput" placeholder="Enter login" maxlength="100">
+      <input type="text" class="form-control" id="loginInput" placeholder="Enter login"
+             [(ngModel)]="login" name="login" maxlength="100">
     </div>
     <div class="form-group">
       <label for="emailInput">Email address</label>
       <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp"
-             placeholder="Enter email" maxlength="100">
+             placeholder="Enter email" [(ngModel)]="email" name="email" maxlength="100"
+             pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
+             required
+      >
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
       <label for="passwordInput">Password</label>
-      <input type="password" class="form-control" id="passwordInput" placeholder="Password" maxlength="100">
+      <input type="password" class="form-control" id="passwordInput"
+             placeholder="Password" [(ngModel)]="password" name="password" maxlength="100">
     </div>
-    <button type="button" class="btn btn-success btn-md" (click)="createUser()">
+    <button type="submit" class="btn btn-success btn-md" (click)="createUser()">
       Subscribe!
     </button>
   </form>

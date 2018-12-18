@@ -24,6 +24,7 @@ export class LogInComponent {
   }
   signIn(login: string, password: string): void {
     this.authInfo = new AuthInfo(login, password);
+    localStorage.setItem('loggedUserId', '-1');
     this.http.getUserByLoginAndPassword(this.authInfo).subscribe(
       userRet => {
         if (!userRet) {
